@@ -1,0 +1,33 @@
+{
+  "name": "react-credit-cards",
+  "version": "0.1.0",
+  "description": "",
+  "author": "AMARO Fashion <it@amaro.com>",
+  "contributors": [
+    {
+      "name": "Cassio Cardoso",
+      "email": "cassio.cardoso@amaro.com"
+    },
+    {
+      "name": "Rodrigo Bacelli",
+      "email": "rodrigo.bacelli@amaro.com"
+    },
+    {
+      "name": "Gil Barbara",
+      "email": "gil.barbara@amaro.com"
+    }
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amarofashion/react-credit-cards.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amarofashion/react-credit-cards/issues"
+  },
+  "homepage": "https://github.com/amarofashion/react-credit-cards#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+}
