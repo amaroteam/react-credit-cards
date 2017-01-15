@@ -1,0 +1,27 @@
+[ignore]
+.*/node_modules/config-chain/test/broken.json
+.*/node_modules/npmconf/test/.*
+.*/node_modules/react-side-effect/.*
+
+[include]
+
+[libs]
+./defs
+
+[options]
+module.name_mapper='^actions\/?\(.*\)?$' -> '<PROJECT_ROOT>/app/scripts/actions/\1'
+module.name_mapper='^config$' -> '<PROJECT_ROOT>/app/scripts/'
+module.name_mapper='^components\/\(.*\)$' -> '<PROJECT_ROOT>/app/scripts/components/\1'
+module.name_mapper='^constants\/index$' -> '<PROJECT_ROOT>/app/scripts/constants/'
+module.name_mapper='^containers\/\(.*\)$' -> '<PROJECT_ROOT>/app/scripts/containers/\1'
+module.name_mapper='^epics\/\(.*\)$' -> '<PROJECT_ROOT>/app/scripts/epics/\1'
+module.name_mapper='^reducers\/\(.*\)$' -> '<PROJECT_ROOT>/app/scripts/reducers/\1'
+module.name_mapper='^utils\/?\(.*\)?$' -> '<PROJECT_ROOT>/app/scripts/utils/\1'
+
+munge_underscores=true
+
+strip_root=true
+
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FixMe

@@ -1,0 +1,43 @@
+{
+  "presets": [
+    "latest",
+    "react",
+    "stage-1"
+  ],
+  "plugins": [
+    [
+      "transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }
+    ]
+  ],
+  "compact": "true",
+  "env": {
+    "production": {
+      "presets": [
+        [
+          "latest", {
+          "es2015": {
+            "modules": false
+          }
+        }
+        ],
+        "react",
+        "stage-1"
+      ],
+      "plugins": [
+        "transform-flow-strip-types",
+        [
+          "transform-runtime", {
+          "polyfill": false,
+          "regenerator": true
+        }
+        ]
+      ]
+    },
+    "test": {
+      "sourceMaps": "both"
+    }
+  }
+}

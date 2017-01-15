@@ -1,0 +1,26 @@
+---
+engines:
+  eslint:
+    enabled: true
+    channel: "eslint-3"
+    checks:
+      import/no-duplicates:
+        enabled: false
+      import/no-extraneous-dependencies:
+        enabled: false
+      import/no-named-as-default-member:
+        enabled: false
+      import/no-unresolved:
+        enabled: false
+  stylelint:
+    enabled: true
+    channel: "beta"
+ratings:
+  paths:
+  - "**.js"
+  - "**.scss"
+exclude_paths:
+  - coverage/**/*
+  - dist/**/*
+  - documentation/**/*
+  - node_modules/**/*

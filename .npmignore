@@ -1,0 +1,12 @@
+.codeclimate.yml
+.editorconfig
+.eslintrc
+.flowconfig
+.gitignore
+.npmignore
+.travis.yml
+config
+coverage
+node_modules
+src
+test

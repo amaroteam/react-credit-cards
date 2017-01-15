@@ -1,0 +1,220 @@
+$rccs-size: 290px;
+$rccs-ratio: 1.5858;
+
+$rccs-name-font-size: 17px;
+$rccs-name-font-family: Consolas, Courier, monospace;
+$rccs-number-font-size: 20px;
+$rccs-number-font-family: Consolas, Courier, monospace;
+$rccs-expiry-font-size: 12px;
+$rccs-expiry-font-family: Consolas, Courier, monospace;
+$rccs-cvc-font-size: 12px;
+$rccs-cvc-font-family: Consolas, Courier, monospace;
+$rccs-cvc-color: #222;
+
+$rccs-valid-font-size: 10px;
+
+$rccs-shadow: 0 0 20px rgba(#000, 0.1);
+$rccs-text-color: #666;
+$rccs-bar: #2a1d16;
+$rccs-background-color: #131313;
+$rccs-mastercard: (#f37b26, #fdb731);
+$rccs-visa: (#0f509e, #1399cd);
+$rccs-amex: (#308c67, #a3f2cf);
+$rccs-hipercard: (#8b181b, #de1f27);
+$rccs-elo: (#211c18, #aaa7a2);
+$rccs-gold: (#d4af37, #fad766);
+
+.rccs {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+
+  &__card {
+    height: $rccs-size / $rccs-ratio;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 400ms linear;
+    width: $rccs-size;
+
+    &--front,
+    &--back {
+      backface-visibility: hidden;
+      background: radial-gradient(#000 15%, transparent 16%) 0 0,
+      radial-gradient(#000 15%, transparent 16%) 8px 8px,
+      radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px,
+      radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
+      background-color: $rccs-background-color;
+      background-size: 16px 16px;
+      border-radius: $rccs-size / 15;
+      color: $rccs-text-color;
+      height: 100%;
+      left: 0;
+      overflow: hidden;
+      padding: 15px;
+      position: absolute;
+      top: 0;
+      transform-style: preserve-3d;
+      transition: all 400ms linear;
+      width: 100%;
+
+      @if $rccs-shadow != null {
+        box-shadow: $rccs-shadow;
+      }
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+
+      &:before {
+        background-color: $rccs-text-color;
+        content: ' ';
+        display: block;
+        height: 18%;
+        left: 3%;
+        position: absolute;
+        top: 36%;
+        width: 75%;
+      }
+
+      .react-credit-card__shiny {
+        display: none;
+        left: 3%;
+        position: absolute;
+        top: 66%;
+      }
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__number {
+    clear: both;
+    font-family: $rccs-number-font-family;
+    font-size: $rccs-number-font-size;
+    left: 10%;
+    position: absolute;
+    top: 50%;
+  }
+
+  &__name {
+    bottom: 15%;
+    font-family: $rccs-name-font-family;
+    font-size: $rccs-name-font-size;
+    left: 10%;
+    line-height: 1;
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+  }
+
+  &__expiry {
+    position: absolute;
+    right: 10%;
+    top: 60%;
+    width: 25%;
+
+    &__valid {
+      font-size: $rccs-valid-font-size;
+      line-height: 1.6;
+    }
+
+    &__value {
+      display: inline-block;
+      font-family: $rccs-expiry-font-family;
+      font-size: $rccs-expiry-font-size;
+    }
+  }
+
+  &__chip {
+    background-image: linear-gradient(-45deg, $rccs-gold);
+    border-radius: 5px;
+    height: 30px;
+    left: 10%;
+    position: absolute;
+    top: 30%;
+    width: 45px;
+  }
+
+  &__stripe {
+    background-color: $rccs-bar;
+    height: 22%;
+    position: absolute;
+    top: 9%;
+    width: 100%;
+  }
+
+  &__cvc {
+    color: $rccs-cvc-color;
+    font-family: $rccs-cvc-font-family;
+    font-size: $rccs-cvc-font-size;
+    left: 67%;
+    position: absolute;
+    top: 42%;
+    transition-delay: 600ms;
+
+    &--front {
+      font-family: $rccs-cvc-font-family;
+      font-size: $rccs-cvc-font-size;
+      position: absolute;
+      right: 18%;
+      top: 19%;
+      transition-delay: 600ms;
+    }
+  }
+
+  &--flipped {
+    transform: rotateY(180deg);
+
+    .react-credit-card__front {
+      z-index: 10;
+    }
+
+    .react-credit-card__back {
+      z-index: 20;
+    }
+  }
+
+  &--focused {
+    font-weight: 700;
+    opacity: 1;
+  }
+
+  &--unknown {
+    box-shadow: none;
+  }
+
+  &--unknown &__logo {
+    visibility: hidden;
+  }
+
+  &--mastercard &__front,
+  &--mastercard &__back {
+    background-image: linear-gradient(45deg, $rccs-mastercard);
+  }
+
+  &--visa &__front,
+  &--visa &__back {
+    background-image: linear-gradient(-45deg, $rccs-visa);
+  }
+
+  &--amex &__front,
+  &--amex &__back {
+    background-image: linear-gradient(-45deg, $rccs-amex);
+  }
+
+  &--hipercard &__front,
+  &--hipercard &__back {
+    background-image: linear-gradient(-45deg, $rccs-hipercard);
+  }
+
+  &--elo &__front,
+  &--elo &__back {
+    background-image: linear-gradient(-45deg, $rccs-elo);
+  }
+}
