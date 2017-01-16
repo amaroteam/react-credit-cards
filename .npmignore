@@ -7,6 +7,6 @@
 .travis.yml
 config
 coverage
+demo
 node_modules
-src
 test

@@ -12,15 +12,19 @@ engines:
         enabled: false
       import/no-unresolved:
         enabled: false
-  stylelint:
-    enabled: true
-    channel: "beta"
+#  stylelint:
+#    enabled: true
+#    channel: "beta"
 ratings:
   paths:
   - "**.js"
   - "**.scss"
 exclude_paths:
+  - config/**/*
   - coverage/**/*
+  - demo/**/*
   - dist/**/*
   - documentation/**/*
+  - lib/**/*
   - node_modules/**/*
+  - test/**/*
