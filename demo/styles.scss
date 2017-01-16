@@ -1,0 +1,50 @@
+/* stylelint-disable scale-unlimited/declaration-strict-value */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700');
+@import '~normalize.css';
+
+$rccs-shadow: '';
+
+@import '../src/styles';
+
+body {
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.rccs__demo {
+  margin: 0 auto;
+  max-width: 600px;
+  width: 90%;
+
+  form {
+    div {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+
+      + div {
+        margin-top: 15px;
+      }
+    }
+
+    label {
+      width: 80px;
+    }
+
+    input {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: none;
+      flex: 2;
+      outline: none;
+      padding: 5px 10px;
+      transition: all 0.4s;
+
+      &:active,
+      &:focus {
+        border-color: #666;
+      }
+    }
+  }
+}

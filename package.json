@@ -1,6 +1,6 @@
 {
   "name": "react-credit-cards",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "author": "AMARO Fashion <it@amaro.com>",
   "contributors": [
@@ -46,10 +46,13 @@
     "babel-preset-latest": "^6.16",
     "babel-preset-react": "^6.16",
     "babel-preset-stage-1": "^6.16",
+    "browser-sync": "^2.18",
+    "browser-sync-webpack-plugin": "^1.1",
     "chalk": "^1.1.3",
     "clean-webpack-plugin": "^0.1",
     "copy-webpack-plugin": "^4.0",
     "css-loader": "^0.26",
+    "date-fns": "^1.24",
     "enzyme": "^2.7",
     "eslint": "3.13",
     "eslint-config-airbnb": "^14.0",
@@ -67,6 +70,7 @@
     "jest-cli": "^18.1",
     "jsdom": "^9.8",
     "node-sass": "^3.13",
+    "normalize.css": "^5.0.0",
     "postcss-loader": "^1.2",
     "react": "^15.4",
     "react-addons-test-utils": "^15.4",
@@ -86,6 +90,7 @@
     "webpack-merge": "^2.3"
   },
   "scripts": {
+    "start": "node config/webpack.demo.js",
     "watch": "webpack --config config/webpack.config.js",
     "build": "NODE_ENV=production webpack --config config/webpack.prod.js",
     "analyze": "NODE_ENV=production webpack --config config/webpack.prod.js --profile --json > webpack.stats.json",
@@ -94,6 +99,7 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "precommit": "node config/tools commits && npm run lint && npm run lint:styles && npm test",
+    "prepublish": "npm run build",
     "postmerge": "node config/tools update && npm update"
   },
   "engines": {
