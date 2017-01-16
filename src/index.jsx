@@ -3,7 +3,7 @@ import React from 'react';
 import Payment from 'payment';
 import './styles.scss';
 
-class CreditCards extends React.PureComponent {
+class CreditCards extends React.Component {
   constructor(props) {
     super(props);
 
@@ -31,11 +31,11 @@ class CreditCards extends React.PureComponent {
     cvc: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.number,
-    ]),
+    ]).isRequired,
     expiry: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.number,
-    ]),
+    ]).isRequired,
     focused: React.PropTypes.string,
     locale: React.PropTypes.shape({
       valid: React.PropTypes.string,
@@ -44,7 +44,7 @@ class CreditCards extends React.PureComponent {
     number: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.number,
-    ]),
+    ]).isRequired,
     placeholders: React.PropTypes.shape({
       name: React.PropTypes.string,
     }),
@@ -52,6 +52,7 @@ class CreditCards extends React.PureComponent {
 
   static defaultProps = {
     acceptedCards: [],
+    expiry: '',
     locale: {
       valid: 'valid thru',
     },
@@ -204,6 +205,7 @@ class CreditCards extends React.PureComponent {
           ].join(' ').trim()}
         >
           <div className="rccs__card--front">
+            <div className="rccs__card__background" />
             <div className="rccs__issuer" />
             <div
               className={[
@@ -241,6 +243,7 @@ class CreditCards extends React.PureComponent {
             <div className="rccs__chip" />
           </div>
           <div className="rccs__card--back">
+            <div className="rccs__card__background" />
             <div className="rccs__stripe" />
             <div className="rccs__signature" />
             <div
