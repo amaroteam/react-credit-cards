@@ -1,9 +1,12 @@
+.babelrc
 .codeclimate.yml
 .editorconfig
 .eslintrc
 .flowconfig
 .gitignore
+.idea
 .npmignore
+.stylelintrc
 .travis.yml
 config
 coverage

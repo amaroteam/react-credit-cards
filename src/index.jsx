@@ -89,25 +89,24 @@ class CreditCards extends React.Component {
 
   setCards() {
     const { acceptedCards } = this.props;
+    let newCardArray = [];
 
     if (acceptedCards.length) {
-      const newCardArray = [];
+      if (acceptedCards.includes('hipercard')) {
+        newCardArray.push(this.hipercard);
+      }
 
       Payment.getCardArray().forEach(d => {
         if (acceptedCards.includes(d.type)) {
           newCardArray.push(d);
         }
       });
-
-      if (acceptedCards.includes('hipercard')) {
-        newCardArray.push(this.hipercard);
-      }
-
-      Payment.setCardArray(newCardArray);
     } else {
-      Payment.addToCardArray(this.hipercard);
+      newCardArray.push(this.hipercard);
+      newCardArray = newCardArray.concat(Payment.getCardArray());
     }
 
+    Payment.setCardArray(newCardArray);
     this.cardTypes = Payment.getCardArray();
   }
 

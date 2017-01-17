@@ -23,8 +23,7 @@ exclude_paths:
   - config/**/*
   - coverage/**/*
   - demo/**/*
-  - dist/**/*
-  - documentation/**/*
+  - docs/**/*
   - lib/**/*
   - node_modules/**/*
   - test/**/*
