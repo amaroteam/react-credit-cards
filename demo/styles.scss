@@ -1,9 +1,6 @@
 /* stylelint-disable scale-unlimited/declaration-strict-value */
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700');
 @import '~normalize.css';
-
-$rccs-shadow: '';
-
 @import '../src/styles';
 
 html {
@@ -28,7 +25,7 @@ h1 {
 
 .rccs__demo {
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 500px;
   width: 90%;
 
   form {

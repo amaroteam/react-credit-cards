@@ -9,18 +9,19 @@
 > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title><%= htmlWebpackPlugin.options.title || 'Moda Feminina | AMARO' %></title>
-  <meta name="description" content="Moda Online Feminina! Compre vestidos, blusas, acessórios e roupas femininas em até 6x sem juros! Entregas para todo o Brasil." />
+  <title><%= htmlWebpackPlugin.options.title || 'React Credit Cards' %></title>
+  <meta name="description" content="React component to render a beautiful credit cards on screen." />
   <% if (htmlWebpackPlugin.options.mobile) { %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
   <% } %>
   <meta property="og:title" content="React Credit Cards" />
   <meta property="og:url" content="https://amarofashion.github.io/react-credit-cards" />
-  <meta property="og:description" content="Credit Cards component for React" />
+  <meta property="og:description" content="React component to render a beautiful credit card on screen." />
   <meta property="og:image" content="https://amarofashion.github.io/react-credit-cards/media/og-image-v1.png" />
   <meta property="og:type" content="website" />
   <% // require('assets/media/images/og-image-v1.png') %>
-  <link rel="shortcut icon" href="<%- require('./media/favicon.ico') %>">
+  <link rel="shortcut icon" href="https://amarofashion.github.io/react-credit-cards/media/favicon.ico">
+  <% require('./media/favicon.ico') %>
   <% if (htmlWebpackPlugin.options.baseHref) { %>
   <base href="<%= htmlWebpackPlugin.options.baseHref %>" />
   <% } %>

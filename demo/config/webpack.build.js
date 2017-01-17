@@ -16,11 +16,12 @@ var config = merge.smart(webpackConfig, {
   },
   output: {
     filename: '[name].[hash].js',
-    path: path.join(__dirname, '../../dist'),
+    path: path.join(__dirname, '../../docs'),
+    publicPath: '/react-credit-cards',
   },
   devtool: 'source-map',
   plugins: [
-    new CleanPlugin(['dist'], { root: path.join(__dirname, '../../') }),
+    new CleanPlugin(['docs'], { root: path.join(__dirname, '../../') }),
     new ExtractText('demo.[hash].css'),
     new HtmlPlugin({
       inject: false,
