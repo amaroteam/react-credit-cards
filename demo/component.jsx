@@ -47,69 +47,74 @@ export default class Demo extends React.Component {
     }
   };
 
+  handleCallback(type, isValid) {
+    console.log(type, isValid);
+  }
+
   render() {
     const { name, number, expiry, cvc, focused } = this.state;
     return (
       <div className="rccs__demo">
         <h1>React Credit Cards</h1>
-        <Cards
-          number={number}
-          name={name}
-          expiry={expiry}
-          cvc={cvc}
-          focused={focused}
-        />
-        <form>
-          <p>Fill the form with your credit card info</p>
-          <div>
-            <label htmlFor="number">
-              Number
-            </label>
-            <input
-              type="text"
-              name="number"
-              id="number"
-              onKeyUp={this.handleInputChange}
-              onFocus={this.handleInputFocus}
-            />
-          </div>
-          <div>
-            <label htmlFor="name">
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              onKeyUp={this.handleInputChange}
-              onFocus={this.handleInputFocus}
-            />
-          </div>
-          <div>
-            <label htmlFor="expiry">
-              Valid Thru
-            </label>
-            <input
-              type="text"
-              name="expiry"
-              id="expiry"
-              onKeyUp={this.handleInputChange}
-              onFocus={this.handleInputFocus}
-            />
-          </div>
-          <div>
-            <label htmlFor="cvc">
-              CVC
-            </label>
-            <input
-              type="text"
-              name="cvc"
-              id="cvc"
-              onKeyUp={this.handleInputChange}
-              onFocus={this.handleInputFocus}
-            />
-          </div>
-        </form>
+        <div className="rccs__demo__content">
+          <Cards
+            number={number}
+            name={name}
+            expiry={expiry}
+            cvc={cvc}
+            focused={focused}
+            callback={this.handleCallback}
+          />
+          <form>
+            <div>
+              <input
+                type="text"
+                name="number"
+                placeholder="Card Number"
+                onKeyUp={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+              />
+              <div>E.g.: 49..., 51..., 36..., 37...</div>
+            </div>
+            <div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                onKeyUp={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="expiry"
+                placeholder="Valid Thru"
+                onKeyUp={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+              />
+              <input
+                type="text"
+                name="cvc"
+                placeholder="CVC"
+                onKeyUp={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+              />
+            </div>
+          </form>
+        </div>
+        <div className="rccs__demo__footer">
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=amarofashion&repo=react-credit-cards&type=star&count=true"
+            frameBorder="0"
+            scrolling="0" width="110px" height="20px"
+          />
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=amarofashion&type=follow&count=true"
+            frameBorder="0"
+            scrolling="0" width="150px" height="20px"
+          />
+        </div>
       </div>
     );
   }
