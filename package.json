@@ -100,7 +100,7 @@
     "lint:styles": "stylelint 'src/**/*.scss'",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "precommit": "node config/tools commits && npm run lint && npm run lint:styles && npm test && npm run build",
+    "precommit": "node config/tools commits && npm run lint && npm run lint:styles && npm test",
     "prepublish": "npm run build",
     "postmerge": "node config/tools update && npm update"
   },
