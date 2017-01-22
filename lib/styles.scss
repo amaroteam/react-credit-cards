@@ -1,6 +1,5 @@
 $rccs-card-ratio: 1.5858 !default;
 $rccs-size: 290px !default;
-$rccs-padding: 5px !default;
 
 $rccs-name-font-size: 17px !default;
 $rccs-name-font-family: Consolas, Courier, monospace !default;
@@ -21,7 +20,7 @@ $rccs-signature-background: repeating-linear-gradient(0.1deg, #fff 20%, #fff 40%
 
 $rccs-default-background: linear-gradient(25deg, #939393, #717171) !default;
 $rccs-unknown-background: linear-gradient(25deg, #999, #999) !default;
-$rccs-background-transition: all 0.8s ease-out !default;
+$rccs-background-transition: all 0.5s ease-out !default;
 
 $rccs-animate-background: true;
 
@@ -66,9 +65,8 @@ $rccs-visaelectron-logo: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBl
 
 .rccs {
   margin: 0 auto;
-  padding: $rccs-padding;
   perspective: 1000px;
-  width: $rccs-size + ($rccs-padding * 2);
+  width: $rccs-size;
 
   &__card {
     height: $rccs-size / $rccs-card-ratio;

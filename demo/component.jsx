@@ -48,7 +48,7 @@ export default class Demo extends React.Component {
   };
 
   handleCallback(type, isValid) {
-    console.log(type, isValid);
+    console.log(type, isValid); //eslint-disable-line no-console
   }
 
   render() {
@@ -71,7 +71,7 @@ export default class Demo extends React.Component {
                 type="text"
                 name="number"
                 placeholder="Card Number"
-                onKeyUp={this.handleInputChange}
+                onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
               <div>E.g.: 49..., 51..., 36..., 37...</div>
@@ -81,7 +81,7 @@ export default class Demo extends React.Component {
                 type="text"
                 name="name"
                 placeholder="Name"
-                onKeyUp={this.handleInputChange}
+                onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
             </div>
@@ -90,14 +90,14 @@ export default class Demo extends React.Component {
                 type="text"
                 name="expiry"
                 placeholder="Valid Thru"
-                onKeyUp={this.handleInputChange}
+                onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
               <input
                 type="text"
                 name="cvc"
                 placeholder="CVC"
-                onKeyUp={this.handleInputChange}
+                onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
             </div>
