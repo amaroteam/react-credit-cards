@@ -71,7 +71,7 @@ export default class Demo extends React.Component {
                 type="text"
                 name="number"
                 placeholder="Card Number"
-                onChange={this.handleInputChange}
+                onKeyUp={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
               <div>E.g.: 49..., 51..., 36..., 37...</div>
@@ -81,7 +81,7 @@ export default class Demo extends React.Component {
                 type="text"
                 name="name"
                 placeholder="Name"
-                onChange={this.handleInputChange}
+                onKeyUp={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
             </div>
@@ -90,14 +90,14 @@ export default class Demo extends React.Component {
                 type="text"
                 name="expiry"
                 placeholder="Valid Thru"
-                onChange={this.handleInputChange}
+                onKeyUp={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
               <input
                 type="text"
                 name="cvc"
                 placeholder="CVC"
-                onChange={this.handleInputChange}
+                onKeyUp={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
             </div>
