@@ -83,15 +83,16 @@ class CreditCards extends React.Component {
     }
 
     if (acceptedCards.toString() !== nextAcceptedCards.toString()) {
-      this.setCards();
+      this.setCards(nextProps);
     }
   }
 
-  setCards() {
-    const { acceptedCards } = this.props;
+  setCards(props = this.props) {
+    const { acceptedCards } = props;
     let newCardArray = [];
 
     if (acceptedCards.length) {
+      /* istanbul ignore else */
       if (acceptedCards.includes('hipercard')) {
         newCardArray.push(this.hipercard);
       }
@@ -112,18 +113,20 @@ class CreditCards extends React.Component {
 
   updateType(number) {
     const { callback } = this.props;
-    const nextType = Payment.fns.cardType(number) || 'unknown';
+    const type = Payment.fns.cardType(number) || 'unknown';
 
     let maxLength = 16;
 
-    if (nextType === 'amex') {
+    if (type === 'amex') {
       maxLength = 15;
-    } else if (nextType === 'hipercard' && number.startsWith('3841')) {
+    } else if (type === 'dinersclub') {
+      maxLength = 14;
+    } else if (type === 'hipercard' && number.startsWith('3841')) {
       maxLength = 19;
     }
 
     const typeState = {
-      name: nextType,
+      issuer: type,
       maxLength,
     };
     const isValid = Payment.fns.validateCardNumber(number);
@@ -133,6 +136,7 @@ class CreditCards extends React.Component {
       type: typeState,
     });
 
+    /* istanbul ignore else */
     if (typeof callback === 'function') {
       callback(typeState, isValid);
     }
@@ -152,11 +156,11 @@ class CreditCards extends React.Component {
       string += '•';
     }
 
-    if (type.name === 'amex') {
+    if (['amex', 'dinersclub'].includes(type.issuer)) {
       const spaces = [4, 10];
       string = `${string.substring(0, spaces[0])} ${string.substring(spaces[0], spaces[1])} ${string.substring(spaces[1])}`;
     } else {
-      for (let i = 1; i < type.maxLength / 4; i++) {
+      for (let i = 1; i < (type.maxLength / 4); i++) {
         const space_index = (i * 4) + (i - 1);
         string = `${string.slice(0, space_index)} ${string.slice(space_index)}`;
       }
@@ -196,8 +200,8 @@ class CreditCards extends React.Component {
         <div
           className={[
             'rccs__card',
-            `rccs__card--${type.name}`,
-            focused === 'cvc' && type.name !== 'amex' ? 'rccs__card--flipped' : '',
+            `rccs__card--${type.issuer}`,
+            focused === 'cvc' && type.issuer !== 'amex' ? 'rccs__card--flipped' : '',
           ].join(' ').trim()}
         >
           <div className="rccs__card--front">
