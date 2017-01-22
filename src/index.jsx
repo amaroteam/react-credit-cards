@@ -111,33 +111,30 @@ class CreditCards extends React.Component {
   }
 
   updateType(number) {
-    const { type } = this.state;
     const { callback } = this.props;
     const nextType = Payment.fns.cardType(number) || 'unknown';
 
-    if (type.name !== nextType) {
-      let maxLength = 16;
+    let maxLength = 16;
 
-      if (nextType === 'amex') {
-        maxLength = 15;
-      } else if (nextType === 'hipercard' && number.startsWith('3841')) {
-        maxLength = 19;
-      }
+    if (nextType === 'amex') {
+      maxLength = 15;
+    } else if (nextType === 'hipercard' && number.startsWith('3841')) {
+      maxLength = 19;
+    }
 
-      const typeState = {
-        name: nextType,
-        maxLength,
-      };
-      const isValid = Payment.fns.validateCardNumber(number);
+    const typeState = {
+      name: nextType,
+      maxLength,
+    };
+    const isValid = Payment.fns.validateCardNumber(number);
 
-      this.setState({
-        isValid,
-        type: typeState,
-      });
+    this.setState({
+      isValid,
+      type: typeState,
+    });
 
-      if (typeof callback === 'function') {
-        callback(typeState, isValid);
-      }
+    if (typeof callback === 'function') {
+      callback(typeState, isValid);
     }
   }
 
