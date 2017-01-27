@@ -16,9 +16,9 @@ engines:
         enabled: false
       import/no-unresolved:
         enabled: false
-#  stylelint:
-#    enabled: true
-#    channel: "beta"
+  stylelint:
+    enabled: true
+    channel: "beta"
 ratings:
   paths:
   - "**.js"
