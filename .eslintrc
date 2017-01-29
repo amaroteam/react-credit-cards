@@ -6,14 +6,7 @@
     "jest": true
   },
   "globals": {
-    "$": true,
-    "$zopim": true,
-    "Modernizr": false,
-    "fetch": false,
-    "ga": false,
-    "yotpo": false,
-    "wistia": true,
-    "_wq": true
+    "Modernizr": false
   },
   "plugins": [
     "babel",
