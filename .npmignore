@@ -11,5 +11,6 @@
 config
 coverage
 demo
+docs
 node_modules
 test

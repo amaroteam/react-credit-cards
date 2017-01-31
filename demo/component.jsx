@@ -68,7 +68,7 @@ export default class Demo extends React.Component {
           <form>
             <div>
               <input
-                type="text"
+                type="tel"
                 name="number"
                 placeholder="Card Number"
                 onKeyUp={this.handleInputChange}
@@ -87,14 +87,14 @@ export default class Demo extends React.Component {
             </div>
             <div>
               <input
-                type="text"
+                type="tel"
                 name="expiry"
                 placeholder="Valid Thru"
                 onKeyUp={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
               <input
-                type="text"
+                type="tel"
                 name="cvc"
                 placeholder="CVC"
                 onKeyUp={this.handleInputChange}
