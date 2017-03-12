@@ -3,7 +3,7 @@ React Credit Cards
 
 ![NPM](https://badge.fury.io/js/react-credit-cards.svg) [![Travis](https://travis-ci.org/amarofashion/react-credit-cards.svg?branch=master)](https://travis-ci.org/amarofashion/react-credit-cards) [![Code Climate](https://codeclimate.com/github/amarofashion/react-credit-cards/badges/gpa.svg)](https://codeclimate.com/github/amarofashion/react-credit-cards) [![Test Coverage](https://codeclimate.com/github/amarofashion/react-credit-cards/badges/coverage.svg)](https://codeclimate.com/github/amarofashion/react-credit-cards/coverage)
 
-A credit card component for React 0.14+.
+A modern credit card component for React 0.14+.
 
 ![demo](https://raw.githubusercontent.com/amarofashion/react-credit-cards/master/docs/media/rccs.gif)
 
@@ -108,8 +108,14 @@ Now, if you go to `http://localhost:3000` in your browser, you should see the de
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process of contributing to the project.
 
+## Useful links
+[EBANK's test numbers](https://www.ebanx.com/business/en/developers/integrations/testing/credit-card-test-numbers)  
+[Adyen's test numbers](https://gist.github.com/j3j5/8b3e48ccad746b90a54a)  
+[Worldpay's test card numbers](https://support.worldpay.com/support/kb/bg/testandgolive/tgl5103.html)  
+[Brazilian cards patterns](https://github.com/erikhenrique/bin-cc/blob/master/README.md)  
+
 ## LICENSE
 
 This project is licensed under the [MIT License](LICENSE.md).
 
-###### Made with :heart: at [AMARO](https://amaro.com).
+###### Made with ❤️ at [AMARO](https://amaro.com).
