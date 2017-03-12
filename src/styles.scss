@@ -227,10 +227,6 @@ $rccs-visaelectron-logo: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBl
         background: $rccs-hipercard-background;
       }
 
-      .rccs__number {
-        font-size: $rccs-number-font-size * 0.85;
-      }
-
       .rccs__issuer {
         background-image: url($rccs-hipercard-logo);
       }
@@ -304,6 +300,10 @@ $rccs-visaelectron-logo: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBl
     left: 10%;
     position: absolute;
     top: 45%;
+
+    &.rccs__number--large {
+      font-size: $rccs-number-font-size * 0.85;
+    }
   }
 
   &__name {

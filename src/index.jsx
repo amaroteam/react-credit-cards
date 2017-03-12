@@ -123,7 +123,8 @@ class CreditCards extends React.Component {
     }
     else if (type === 'dinersclub') {
       maxLength = 14;
-    } else if (type === 'hipercard' && number.startsWith('3841')) {
+    }
+    else if (type === 'hipercard' || type === 'visa') {
       maxLength = 19;
     }
 
@@ -148,21 +149,33 @@ class CreditCards extends React.Component {
     const { type } = this.state;
     const { number } = this.props;
 
-    let string = number || '';
+    let string = !isNaN(parseInt(number, 10)) ? number : '';
+    let maxLength = type.maxLength;
 
-    if (string.length > type.maxLength) {
-      string = string.slice(0, type.maxLength);
+    if (type.maxLength > 16) {
+      maxLength = string.length <= 16 ? 16 : type.maxLength;
     }
 
-    while (string.length < type.maxLength) {
+    if (string.length > maxLength) {
+      string = string.slice(0, maxLength);
+    }
+
+    while (string.length < maxLength) {
       string += '•';
     }
 
     if (['amex', 'dinersclub'].includes(type.issuer)) {
-      const spaces = [4, 10];
-      string = `${string.substring(0, spaces[0])} ${string.substring(spaces[0], spaces[1])} ${string.substring(spaces[1])}`;
-    } else {
-      for (let i = 1; i < (type.maxLength / 4); i++) {
+      const format = [0, 4, 10];
+      const limit = [4, 6, 5];
+      string = `${string.substr(format[0], limit[0])} ${string.substr(format[1], limit[1])} ${string.substr(format[2], limit[2])}`;
+    }
+    else if (number.length > 16) {
+      const format = [0, 4, 8, 12];
+      const limit = [4, 7];
+      string = `${string.substr(format[0], limit[0])} ${string.substr(format[1], limit[0])} ${string.substr(format[2], limit[0])} ${string.substr(format[3], limit[1])}`;
+    }
+    else {
+      for (let i = 1; i < (maxLength / 4); i++) {
         const space_index = (i * 4) + (i - 1);
         string = `${string.slice(0, space_index)} ${string.slice(space_index)}`;
       }
@@ -194,8 +207,10 @@ class CreditCards extends React.Component {
   }
 
   render() {
-    const { cvc, focused, locale, name, placeholders } = this.props;
     const { type } = this.state;
+    const { cvc, focused, locale, name, placeholders } = this.props;
+    const number = this.formatNumber();
+    const expiry = this.formatExpiry();
 
     return (
       <div key="Cards" className="rccs">
@@ -220,10 +235,11 @@ class CreditCards extends React.Component {
             <div
               className={[
                 'rccs__number',
+                number.replace(/ /g, '').length > 16 ? 'rccs__number--large' : '',
                 focused === 'number' ? 'rccs--focused' : '',
               ].join(' ').trim()}
             >
-              {this.formatNumber()}
+              {number}
             </div>
             <div
               className={[
@@ -240,7 +256,7 @@ class CreditCards extends React.Component {
               ].join(' ').trim()}
             >
               <div className="rccs__expiry__valid">{locale.valid}</div>
-              <div className="rccs__expiry__value">{this.formatExpiry()}</div>
+              <div className="rccs__expiry__value">{expiry}</div>
             </div>
             <div className="rccs__chip" />
           </div>
