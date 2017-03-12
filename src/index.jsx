@@ -17,7 +17,7 @@ class CreditCards extends React.Component {
 
     this.hipercard = {
       type: 'hipercard',
-      pattern: /^(3841|606282)/,
+      pattern: /^(3841|606282|637)/,
       format: /(\d{1,4})/g,
       length: [16, 19],
       cvcLength: [3],
