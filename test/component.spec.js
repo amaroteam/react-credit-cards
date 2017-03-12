@@ -153,7 +153,7 @@ describe('Cards', () => {
     });
 
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--hipercard')).toBe(true);
-    expect(wrapper.find('.rccs__number').text()).toBe('3841 0058 9908 8180 330');
+    expect(wrapper.find('.rccs__number').text()).toBe('3841 0058 9908 8180330');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
     expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 19, issuer: 'hipercard' });
@@ -240,7 +240,21 @@ describe('Cards', () => {
     expect(wrapper.find('.rccs__number').text()).toBe('4012 8888 8888 1881');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
-    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'visa' });
+    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 19, issuer: 'visa' });
+    expect(mockCallback.mock.calls[0][1]).toEqual(true);
+  });
+
+  it('should handle new number props (Visa with 19 digits)', () => {
+    wrapper.setProps({
+      number: '4111111111111111342',
+      focused: 'number',
+    });
+
+    expect(wrapper.find('.rccs__card').hasClass('rccs__card--visa')).toBe(true);
+    expect(wrapper.find('.rccs__number').text()).toBe('4111 1111 1111 1111342');
+    expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
+
+    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 19, issuer: 'visa' });
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
@@ -260,15 +274,15 @@ describe('Cards', () => {
 
   it('should handle new number props with extra digits', () => {
     wrapper.setProps({
-      number: '4012888888881881000',
+      number: '5512888888881881000',
       focused: 'number',
     });
 
-    expect(wrapper.find('.rccs__card').hasClass('rccs__card--visa')).toBe(true);
-    expect(wrapper.find('.rccs__number').text()).toBe('4012 8888 8888 1881');
+    expect(wrapper.find('.rccs__card').hasClass('rccs__card--mastercard')).toBe(true);
+    expect(wrapper.find('.rccs__number').text()).toBe('5512 8888 8888 1881');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
-    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'visa' });
+    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'mastercard' });
     expect(mockCallback.mock.calls[0][1]).toEqual(false);
   });
 
