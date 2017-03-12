@@ -45,7 +45,7 @@ Don't forget to import the `react-credit-cards/lib/styles.scss` in your main.scs
 - `locale` {object}: Localization text (e.g. `{ valid: 'valid thru' }`).
 - `placeholders` {object}: Placeholder text (e.g. `{ name: 'YOUR NAME HERE' }`).
 - `acceptedCards` {array}: If you want to limit the accepted cards. (e.g. `['visa', 'mastercard']`
-- `callback` {func}: A callback function that will be called when the card number has changed with 2 paramaters: `type {{ issuer: 'visa', maxLenght: 16 }}, isValid {boolean}`
+- `callback` {func}: A callback function that will be called when the card number has changed with 2 paramaters: `type {{ issuer: 'visa', maxLenght: 19 }}, isValid {boolean}`
 
 \* *Required fields*
 
