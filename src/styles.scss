@@ -168,7 +168,7 @@ $rccs-visaelectron-logo: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBl
         background-image: url($rccs-amex-logo);
       }
 
-      .rccs__cvc--front {
+      .rccs__cvc__front {
         opacity: 0.5;
         visibility: visible;
       }
@@ -397,20 +397,24 @@ $rccs-visaelectron-logo: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBl
     line-height: 1;
     position: absolute;
     top: 42%;
+  }
 
-    &--front {
-      font-family: $rccs-cvc-font-family;
-      font-size: $rccs-cvc-font-size * 0.85;
-      opacity: 0;
-      position: absolute;
-      right: 10%;
-      top: 38%;
-      visibility: hidden;
-    }
+  &__cvc__front {
+    font-family: $rccs-cvc-font-family;
+    font-size: $rccs-cvc-font-size * 0.85;
+    opacity: 0;
+    position: absolute;
+    right: 10%;
+    top: 38%;
+    visibility: hidden;
+  }
+
+  &--filled {
+    opacity: 0.8 !important;
   }
 
   &--focused {
     font-weight: 700;
-    opacity: 1;
+    opacity: 1 !important;
   }
 }

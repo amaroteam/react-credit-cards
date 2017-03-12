@@ -226,7 +226,7 @@ class CreditCards extends React.Component {
             <div className="rccs__issuer" />
             <div
               className={[
-                'rccs__cvc--front',
+                'rccs__cvc__front',
                 focused === 'cvc' ? 'rccs--focused' : '',
               ].join(' ').trim()}
             >
@@ -237,6 +237,7 @@ class CreditCards extends React.Component {
                 'rccs__number',
                 number.replace(/ /g, '').length > 16 ? 'rccs__number--large' : '',
                 focused === 'number' ? 'rccs--focused' : '',
+                number.substr(0, 1) !== '•' ? 'rccs--filled' : '',
               ].join(' ').trim()}
             >
               {number}
@@ -245,6 +246,7 @@ class CreditCards extends React.Component {
               className={[
                 'rccs__name',
                 focused === 'name' ? 'rccs--focused' : '',
+                name ? 'rccs--filled' : '',
               ].join(' ').trim()}
             >
               {name || placeholders.name}
@@ -253,6 +255,7 @@ class CreditCards extends React.Component {
               className={[
                 'rccs__expiry',
                 focused === 'expiry' ? 'rccs--focused' : '',
+                expiry.substr(0, 1) !== '•' ? 'rccs--filled' : '',
               ].join(' ').trim()}
             >
               <div className="rccs__expiry__valid">{locale.valid}</div>
