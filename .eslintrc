@@ -26,6 +26,7 @@
     ],
     "arrow-parens": 0,
     "block-spacing": 1,
+    "brace-style": [1, "stroustrup"],
     "camelcase": 0,
     "class-methods-use-this": 0,
     "comma-dangle": ["warn", {

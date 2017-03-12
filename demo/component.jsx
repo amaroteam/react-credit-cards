@@ -36,11 +36,13 @@ export default class Demo extends React.Component {
       this.setState({
         [target.name]: target.value.replace(/ /g, ''),
       });
-    } else if (target.name === 'expiry') {
+    }
+    else if (target.name === 'expiry') {
       this.setState({
         [target.name]: target.value.replace(/ |\//g, ''),
       });
-    } else {
+    }
+    else {
       this.setState({
         [target.name]: target.value,
       });

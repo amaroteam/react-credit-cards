@@ -65,7 +65,8 @@ if (args[0] === 'commits') {
 
         if ($local === $remote) {
           console.log(chalk.green('✔ Repo is up-to-date!'));
-        } else if ($local === $base) {
+        }
+        else if ($local === $base) {
           console.error(chalk.red('⊘ Error: You need to pull, there are new commits.'));
           process.exit(1);
         }

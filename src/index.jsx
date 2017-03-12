@@ -102,7 +102,8 @@ class CreditCards extends React.Component {
           newCardArray.push(d);
         }
       });
-    } else {
+    }
+    else {
       newCardArray.push(this.hipercard);
       newCardArray = newCardArray.concat(Payment.getCardArray());
     }
@@ -119,7 +120,8 @@ class CreditCards extends React.Component {
 
     if (type === 'amex') {
       maxLength = 15;
-    } else if (type === 'dinersclub') {
+    }
+    else if (type === 'dinersclub') {
       maxLength = 14;
     } else if (type === 'hipercard' && number.startsWith('3841')) {
       maxLength = 19;
