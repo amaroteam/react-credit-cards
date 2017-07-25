@@ -93,12 +93,12 @@ class CreditCards extends React.Component {
 
     if (acceptedCards.length) {
       /* istanbul ignore else */
-      if (acceptedCards.includes('hipercard')) {
+      if (acceptedCards.indexOf('hipercard') > -1) {
         newCardArray.push(this.hipercard);
       }
 
       Payment.getCardArray().forEach(d => {
-        if (acceptedCards.includes(d.type)) {
+        if (acceptedCards.indexOf(d.type) > -1) {
           newCardArray.push(d);
         }
       });
@@ -164,7 +164,7 @@ class CreditCards extends React.Component {
       string += '•';
     }
 
-    if (['amex', 'dinersclub'].includes(type.issuer)) {
+    if (['amex', 'dinersclub'].indexOf(type.issuer) > -1) {
       const format = [0, 4, 10];
       const limit = [4, 6, 5];
       string = `${string.substr(format[0], limit[0])} ${string.substr(format[1], limit[1])} ${string.substr(format[2], limit[2])}`;
