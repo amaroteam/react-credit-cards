@@ -5,6 +5,7 @@
     "stage-1"
   ],
   "plugins": [
+      "array-includes",
     [
       "transform-runtime", {
       "polyfill": false,
