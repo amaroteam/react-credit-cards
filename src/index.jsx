@@ -149,8 +149,11 @@ class ReactCreditCards extends React.Component {
     const { type } = this.state;
     const { number } = this.props;
 
-    let string = !isNaN(parseInt(number, 10)) ? number : '';
     let maxLength = type.maxLength;
+    let string = typeof number === 'number' ? number.toString() : number;
+    if (isNaN(parseInt(number, 10))) {
+      string = '';
+    }
 
     if (type.maxLength > 16) {
       maxLength = string.length <= 16 ? 16 : type.maxLength;
