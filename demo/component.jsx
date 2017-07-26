@@ -56,7 +56,7 @@ export default class Demo extends React.Component {
   render() {
     const { name, number, expiry, cvc, focused } = this.state;
     return (
-      <div className="rccs__demo">
+      <div className="rccs__demo" style={{ opacity: 0 }}>
         <h1>React Credit Cards</h1>
         <div className="rccs__demo__content">
           <Cards
