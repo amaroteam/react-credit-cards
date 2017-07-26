@@ -1,9 +1,9 @@
-/* eslint-disable guard-for-in */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Payment from 'payment';
 import './styles.scss';
 
-class CreditCards extends React.Component {
+class ReactCreditCards extends React.Component {
   constructor(props) {
     super(props);
 
@@ -26,27 +26,27 @@ class CreditCards extends React.Component {
   }
 
   static propTypes = {
-    acceptedCards: React.PropTypes.array,
-    callback: React.PropTypes.func,
-    cvc: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    acceptedCards: PropTypes.array,
+    callback: PropTypes.func,
+    cvc: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]).isRequired,
-    expiry: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    expiry: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]).isRequired,
-    focused: React.PropTypes.string,
-    locale: React.PropTypes.shape({
-      valid: React.PropTypes.string,
+    focused: PropTypes.string,
+    locale: PropTypes.shape({
+      valid: PropTypes.string,
     }),
-    name: React.PropTypes.string.isRequired,
-    number: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]).isRequired,
-    placeholders: React.PropTypes.shape({
-      name: React.PropTypes.string,
+    placeholders: PropTypes.shape({
+      name: PropTypes.string,
     }),
   };
 
@@ -283,4 +283,4 @@ class CreditCards extends React.Component {
   }
 }
 
-export default CreditCards;
+export default ReactCreditCards;
