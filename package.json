@@ -14,8 +14,6 @@
     }
   ],
   "main": "lib/index.js",
-  "module": "./src/index.jsx",
-  "jsnext:main": "./src/index.jsx",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amarofashion/react-credit-cards.git"
