@@ -115,10 +115,6 @@
     "android >= 4.4",
     "bb >= 10"
   ],
-  "engines": {
-    "node": ">=6.0.0",
-    "npm": ">=3.0.0"
-  },
   "jest": {
     "transform": {
       ".*": "<rootDir>/node_modules/babel-jest"
