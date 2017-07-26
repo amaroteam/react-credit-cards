@@ -1,43 +1,25 @@
 {
   "presets": [
-    "latest",
+    [
+      "env", {
+      "modules": false
+    }
+    ],
     "react",
     "stage-1"
-  ],
-  "plugins": [
-      "array-includes",
-    [
-      "transform-runtime", {
-      "polyfill": false,
-      "regenerator": true
-    }
-    ]
   ],
   "compact": "true",
   "env": {
     "production": {
-      "presets": [
-        [
-          "latest", {
-          "es2015": {
-            "modules": false
-          }
-        }
-        ],
-        "react",
-        "stage-1"
-      ],
       "plugins": [
-        "transform-flow-strip-types",
-        [
-          "transform-runtime", {
-          "polyfill": false,
-          "regenerator": true
-        }
-        ]
+        "array-includes",
+        "transform-flow-strip-types"
       ]
     },
     "test": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ],
       "sourceMaps": "both"
     }
   }
