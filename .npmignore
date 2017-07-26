@@ -13,4 +13,7 @@ coverage
 demo
 docs
 node_modules
+package-lock.json
 test
+webpack.stats.json
+yarn.lock
