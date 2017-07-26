@@ -94,9 +94,9 @@
   "scripts": {
     "start": "node demo/config/webpack.server.js",
     "watch": "webpack --config config/webpack.config.js",
-    "build": "NODE_ENV=production webpack --config config/webpack.prod.js",
+    "build": "NODE_ENV=production webpack --config config/webpack.build.js",
     "build:demo": "NODE_ENV=production webpack --config demo/config/webpack.build.js",
-    "analyze": "NODE_ENV=production webpack --config config/webpack.prod.js --profile --json > webpack.stats.json",
+    "analyze": "NODE_ENV=production webpack --config config/webpack.build.js --profile --json > webpack.stats.json",
     "lint": "eslint  --ext .js --ext .jsx src test config",
     "lint:styles": "stylelint 'src/**/*.scss'",
     "test": "jest --coverage",
@@ -105,6 +105,17 @@
     "prepublish": "npm run build",
     "postmerge": "node config/tools update && npm update"
   },
+  "browserslist": [
+    "ie >= 10",
+    "ie_mob >= 10",
+    "ff >= 40",
+    "chrome >= 40",
+    "safari >= 7",
+    "opera >= 23",
+    "ios >= 8",
+    "android >= 4.4",
+    "bb >= 10"
+  ],
   "engines": {
     "node": ">=6.0.0",
     "npm": ">=3.0.0"

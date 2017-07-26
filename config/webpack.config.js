@@ -1,12 +1,26 @@
 /*eslint-disable no-var, one-var, func-names, indent, prefer-arrow-callback, object-shorthand, no-console, newline-per-chained-call, one-var-declaration-per-line, prefer-template, vars-on-top */
-var path = require('path');
-var webpack = require('webpack');
-var ExtractText = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractText = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
-var isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production';
+const cssLoaders = [
+  'style',
+  'css?sourceMap',
+  {
+    loader: 'postcss',
+    options: {
+      sourceMap: true,
+      plugins: [
+        autoprefixer(),
+      ],
+    },
+  },
+  'sass?sourceMap',
+];
 
-var config = {
+const config = {
   context: path.join(__dirname, '../src'),
   resolve: {
     alias: {
@@ -23,7 +37,6 @@ var config = {
   output: {
     filename: 'index.js',
     path: path.join(__dirname, '../lib'),
-    libraryTarget: 'umd',
   },
   devtool: 'source-map',
   module: {
@@ -38,50 +51,17 @@ var config = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractText.extract(['css?sourceMap', 'postcss?pack=custom', 'sass?sourceMap'].join('!')),
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg|ico)$/i,
-        use: [
-          'file?hash=sha512&digest=hex' + (isProd ? '&name=media/[name].[ext]' : ''),
-          'image-webpack?bypassOnDebug=false&optimizationLevel=7&interlaced=false',
-        ],
-        include: /media/,
-      },
-      {
-        test: /\.json$/,
-        use: ['json'],
+        loader: isProd
+          ? ExtractText.extract({
+            use: cssLoaders.slice(1),
+          })
+          : cssLoaders,
       },
     ],
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new ExtractText('styles-compiled.css'),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        context: '/',
-        postcss: function() {
-          return {
-            defaults: [autoprefixer],
-            custom: [
-              autoprefixer({
-                browsers: [
-                  'ie >= 9',
-                  'ie_mob >= 10',
-                  'ff >= 30',
-                  'chrome >= 34',
-                  'safari >= 7',
-                  'opera >= 23',
-                  'ios >= 7',
-                  'android >= 4.4',
-                  'bb >= 10',
-                ],
-              }),
-            ],
-          };
-        },
-      },
-    }),
   ],
   watch: true,
 };
