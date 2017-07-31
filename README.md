@@ -11,7 +11,7 @@ A modern credit card component for React 0.14+.
 
 ### Install
 ```
-npm install --save-dev react-credit-cards
+npm install --save react-credit-cards
 ```
 
 ### Usage
