@@ -23,6 +23,15 @@ class ReactCreditCards extends React.Component {
       cvcLength: [3],
       luhn: true,
     };
+
+    this.elo = {
+      type: 'elo',
+      pattern: /^(4011(78|79)|43(1274|8935)|45(1416|7393|763(1|2))|50(4175|6699|67[0-7][0-9]|9000)|627780|63(6297|6368)|650(03([^4])|04([0-9])|05(0|1)|4(0[5-9]|3[0-9]|8[5-9]|9[0-9])|5([0-2][0-9]|3[0-8])|9([2-6][0-9]|7[0-8])|541|700|720|901)|651652|655000|655021)/,
+      format: /(\d{1,4})/g,
+      length: [16],
+      cvcLength: [3],
+      luhn: true,
+    };
   }
 
   static propTypes = {
@@ -97,15 +106,23 @@ class ReactCreditCards extends React.Component {
         newCardArray.push(this.hipercard);
       }
 
-      Payment.getCardArray().forEach(d => {
-        if (acceptedCards.includes(d.type)) {
-          newCardArray.push(d);
-        }
-      });
+      if (acceptedCards.includes('elo')) {
+        newCardArray.push(this.elo);
+      }
+
+      Payment.getCardArray()
+        .filter(d => d.type !== 'elo')
+        .forEach(d => {
+          console.log(d);
+          if (acceptedCards.includes(d.type)) {
+            newCardArray.push(d);
+          }
+        });
     }
     else {
       newCardArray.push(this.hipercard);
-      newCardArray = newCardArray.concat(Payment.getCardArray());
+      newCardArray.push(this.elo);
+      newCardArray = newCardArray.concat(Payment.getCardArray().filter(d => d.type !== 'elo'));
     }
 
     Payment.setCardArray(newCardArray);
