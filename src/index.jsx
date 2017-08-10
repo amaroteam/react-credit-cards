@@ -113,7 +113,6 @@ class ReactCreditCards extends React.Component {
       Payment.getCardArray()
         .filter(d => d.type !== 'elo')
         .forEach(d => {
-          console.log(d);
           if (acceptedCards.includes(d.type)) {
             newCardArray.push(d);
           }
