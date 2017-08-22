@@ -33,7 +33,7 @@ Don't forget to import the `react-credit-cards/lib/styles.scss` in your main.scs
 
 ### Features
 
-- We support all credit card issuers available in [Payment](https://github.com/jessepollak/payment) plus Hipercard (a brazilian credit card).
+- We support all credit card issuers available in [Payment](https://github.com/jessepollak/payment) plus Hipercard and Elo (brazilian credit cards).
 
 ## Props
 
