@@ -106,6 +106,7 @@ class ReactCreditCards extends React.Component {
         newCardArray.push(this.hipercard);
       }
 
+      /* istanbul ignore else */
       if (acceptedCards.includes('elo')) {
         newCardArray.push(this.elo);
       }
