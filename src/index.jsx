@@ -14,24 +14,6 @@ class ReactCreditCards extends React.Component {
         maxLength: 16,
       },
     };
-
-    this.hipercard = {
-      type: 'hipercard',
-      pattern: /^(3841|606282|637)/,
-      format: /(\d{1,4})/g,
-      length: [16, 19],
-      cvcLength: [3],
-      luhn: true,
-    };
-
-    this.elo = {
-      type: 'elo',
-      pattern: /^(4011(78|79)|43(1274|8935)|45(1416|7393|763(1|2))|50(4175|6699|67[0-7][0-9]|9000)|627780|63(6297|6368)|650(03([^4])|04([0-9])|05(0|1)|4(0[5-9]|3[0-9]|8[5-9]|9[0-9])|5([0-2][0-9]|3[0-8])|9([2-6][0-9]|7[0-8])|541|700|720|901)|651652|655000|655021)/,
-      format: /(\d{1,4})/g,
-      length: [16],
-      cvcLength: [3],
-      luhn: true,
-    };
   }
 
   static propTypes = {
@@ -101,18 +83,7 @@ class ReactCreditCards extends React.Component {
     let newCardArray = [];
 
     if (acceptedCards.length) {
-      /* istanbul ignore else */
-      if (acceptedCards.includes('hipercard')) {
-        newCardArray.push(this.hipercard);
-      }
-
-      /* istanbul ignore else */
-      if (acceptedCards.includes('elo')) {
-        newCardArray.push(this.elo);
-      }
-
       Payment.getCardArray()
-        .filter(d => d.type !== 'elo')
         .forEach(d => {
           if (acceptedCards.includes(d.type)) {
             newCardArray.push(d);
@@ -120,13 +91,10 @@ class ReactCreditCards extends React.Component {
         });
     }
     else {
-      newCardArray.push(this.hipercard);
-      newCardArray.push(this.elo);
-      newCardArray = newCardArray.concat(Payment.getCardArray().filter(d => d.type !== 'elo'));
+      newCardArray = newCardArray.concat(Payment.getCardArray());
     }
 
     Payment.setCardArray(newCardArray);
-    this.cardTypes = Payment.getCardArray();
   }
 
   updateType(number) {
@@ -141,7 +109,7 @@ class ReactCreditCards extends React.Component {
     else if (type === 'dinersclub') {
       maxLength = 14;
     }
-    else if (type === 'hipercard' || type === 'visa') {
+    else if (['hipercard', 'mastercard', 'visa'].includes(type)) {
       maxLength = 19;
     }
 

@@ -177,20 +177,6 @@ describe('Cards', () => {
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
-  it('should handle new number props (Maestro)', () => {
-    wrapper.setProps({
-      number: '6304414232839699',
-      focused: 'number',
-    });
-
-    expect(wrapper.find('.rccs__card').hasClass('rccs__card--maestro')).toBe(true);
-    expect(wrapper.find('.rccs__number').text()).toBe('6304 4142 3283 9699');
-    expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
-
-    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'maestro' });
-    expect(mockCallback.mock.calls[0][1]).toEqual(true);
-  });
-
   it('should handle new number props (Laser)', () => {
     wrapper.setProps({
       number: '6709359636227382',
@@ -205,6 +191,20 @@ describe('Cards', () => {
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
+  it('should handle new number props (Maestro)', () => {
+    wrapper.setProps({
+      number: '6304414232839699',
+      focused: 'number',
+    });
+
+    expect(wrapper.find('.rccs__card').hasClass('rccs__card--maestro')).toBe(true);
+    expect(wrapper.find('.rccs__number').text()).toBe('6304 4142 3283 9699');
+    expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
+
+    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'maestro' });
+    expect(mockCallback.mock.calls[0][1]).toEqual(true);
+  });
+
   it('should handle new number props (Mastercard)', () => {
     wrapper.setProps({
       number: '5105105105105100',
@@ -215,7 +215,7 @@ describe('Cards', () => {
     expect(wrapper.find('.rccs__number').text()).toBe('5105 1051 0510 5100');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
-    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'mastercard' });
+    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 19, issuer: 'mastercard' });
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
@@ -277,15 +277,15 @@ describe('Cards', () => {
 
   it('should handle new number props with extra digits', () => {
     wrapper.setProps({
-      number: '5512888888881881000',
+      number: '5512888888881881000000',
       focused: 'number',
     });
 
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--mastercard')).toBe(true);
-    expect(wrapper.find('.rccs__number').text()).toBe('5512 8888 8888 1881');
+    expect(wrapper.find('.rccs__number').text()).toBe('5512 8888 8888 1881000');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
-    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'mastercard' });
+    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 19, issuer: 'mastercard' });
     expect(mockCallback.mock.calls[0][1]).toEqual(false);
   });
 
