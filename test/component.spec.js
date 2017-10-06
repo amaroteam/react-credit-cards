@@ -330,9 +330,17 @@ describe('Cards', () => {
     expect(wrapper.props().acceptedCards).toEqual([]);
 
     wrapper.setProps({
-      acceptedCards: ['visa', 'mastercard', 'hipercard'],
+      acceptedCards: ['visa', 'mastercard', 'hipercard', 'elo'],
     });
 
-    expect(wrapper.props().acceptedCards).toEqual(['visa', 'mastercard', 'hipercard']);
+    expect(wrapper.props().acceptedCards).toEqual(['visa', 'mastercard', 'hipercard', 'elo']);
+  });
+
+  it('should format a number into string', () => {
+    wrapper.setProps({
+      number: 4111111111111111,
+    });
+
+    expect(typeof wrapper.find('.rccs__number').text()).toBe('string');
   });
 });
