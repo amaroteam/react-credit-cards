@@ -1,7 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { configure, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import Cards from 'index';
+
+configure({ adapter: new Adapter() });
 
 const mockCallback = jest.fn();
 
