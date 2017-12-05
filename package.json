@@ -1,6 +1,6 @@
 {
   "name": "react-credit-cards",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Beautiful credit cards for your payment forms",
   "author": "AMARO Fashion <it@amaro.com>",
   "contributors": [
@@ -118,7 +118,7 @@
     "start": "node demo/config/webpack.server.js",
     "build:demo": "NODE_ENV=production webpack --config demo/config/webpack.build.js",
     "analyze": "NODE_ENV=production webpack --config config/webpack.build.js --profile --json > webpack.stats.json",
-    "lint": "eslint  --ext .js --ext .jsx src test config",
+    "lint": "eslint  --ext .js --ext .jsx src test tasks",
     "lint:styles": "stylelint 'src/**/*.scss'",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
