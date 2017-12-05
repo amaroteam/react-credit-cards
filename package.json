@@ -126,15 +126,5 @@
     "postmerge": "node tasks update && npm update",
     "prepublishOnly": "npm run build"
   },
-  "browserslist": [
-    "ie >= 10",
-    "ie_mob >= 10",
-    "ff >= 40",
-    "chrome >= 40",
-    "safari >= 7",
-    "opera >= 23",
-    "ios >= 8",
-    "android >= 4.4",
-    "bb >= 10"
-  ]
+  "browserslist": ["last 2 versions", "safari >= 8", "ios > 8"]
 }

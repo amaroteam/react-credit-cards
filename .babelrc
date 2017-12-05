@@ -1,13 +1,11 @@
 {
   "presets": [
     [
-      "env", {
-      "useBuiltIns": true,
-      "modules": false,
-      "targets": {
-        "node": "8"
+      "env",
+      {
+        "useBuiltIns": true,
+        "modules": false
       }
-    }
     ],
     "react",
     "stage-1"
@@ -21,20 +19,9 @@
       ]
     },
     "commonjs": {
-      "presets": [
-        [
-          "env", {
-          "useBuiltIns": true,
-          "targets": {
-            "browsers": ["last 2 versions", "safari >= 7"]
-          }
-        }
-        ],
-        "react",
-        "stage-1"
-      ],
       "plugins": [
         "array-includes",
+        ["transform-es2015-modules-commonjs", { "loose": true }],
         "transform-flow-strip-types",
         "transform-object-assign"
       ]
