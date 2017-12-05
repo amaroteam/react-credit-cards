@@ -2,18 +2,26 @@
   "presets": [
     [
       "env", {
-      "modules": false
+      "useBuiltIns": true,
+      "modules": false,
+      "targets": {
+        "node": "8"
+      }
     }
     ],
     "react",
     "stage-1"
   ],
-  "compact": "true",
   "env": {
     "production": {
       "plugins": [
         "array-includes",
         "transform-flow-strip-types"
+      ]
+    },
+    "commonjs": {
+      "plugins": [
+        ["transform-es2015-modules-commonjs", { "loose": true }]
       ]
     },
     "test": {

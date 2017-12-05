@@ -2,7 +2,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const autoprefixer = require('autoprefixer');
 const CleanPlugin = require('clean-webpack-plugin');
 const ExtractText = require('extract-text-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');

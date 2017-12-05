@@ -2,7 +2,7 @@
 engines:
   eslint:
     enabled: true
-    channel: "eslint-3"
+    channel: "eslint-4"
     config:
       extensions:
         - .js
@@ -10,15 +10,16 @@ engines:
     checks:
       import/no-duplicates:
         enabled: false
+      no-template-curly-in-string:
+        enabled: false
+      import/no-unresolved:
+        enabled: false
       import/no-extraneous-dependencies:
         enabled: false
       import/no-named-as-default-member:
         enabled: false
-      import/no-unresolved:
-        enabled: false
   stylelint:
     enabled: true
-    channel: "beta"
 ratings:
   paths:
   - "**.js"
@@ -27,6 +28,7 @@ ratings:
 exclude_paths:
   - coverage/**/*
   - docs/**/*
+  - es/**/*
   - lib/**/*
   - node_modules/**/*
   - test/**/*
