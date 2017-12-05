@@ -1,15 +1,16 @@
 import React from 'react';
 import Payment from 'payment';
 
-import Cards from '../src';
+import ReactCreditCard from '../src';
 
 export default class Demo extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       number: '',
       name: '',
-      exp: '',
+      expiry: '',
       cvc: '',
       focused: '',
     };
@@ -21,17 +22,13 @@ export default class Demo extends React.Component {
     Payment.formatCardCVC(document.querySelector('[name="cvc"]'));
   }
 
-  handleInputFocus = (e) => {
-    const target = e.target;
-
+  handleInputFocus = ({ target }) => {
     this.setState({
       focused: target.name,
     });
   };
 
-  handleInputChange = (e) => {
-    const target = e.target;
-
+  handleInputChange = ({ target }) => {
     if (target.name === 'number') {
       this.setState({
         [target.name]: target.value.replace(/ /g, ''),
@@ -59,7 +56,7 @@ export default class Demo extends React.Component {
       <div className="rccs__demo" style={{ opacity: 0 }}>
         <h1>React Credit Cards</h1>
         <div className="rccs__demo__content">
-          <Cards
+          <ReactCreditCard
             number={number}
             name={name}
             expiry={expiry}
@@ -107,11 +104,13 @@ export default class Demo extends React.Component {
         </div>
         <div className="rccs__demo__footer">
           <iframe
+            title="GitHub Stars"
             src="https://ghbtns.com/github-btn.html?user=amarofashion&repo=react-credit-cards&type=star&count=true"
             frameBorder="0"
             scrolling="0" width="110px" height="20px"
           />
           <iframe
+            title="GitHub Followers"
             src="https://ghbtns.com/github-btn.html?user=amarofashion&type=follow&count=true"
             frameBorder="0"
             scrolling="0" width="150px" height="20px"
