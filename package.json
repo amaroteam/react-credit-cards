@@ -135,41 +135,5 @@
     "ios >= 8",
     "android >= 4.4",
     "bb >= 10"
-  ],
-  "jest": {
-    "transform": {
-      ".*": "<rootDir>/node_modules/babel-jest"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "src",
-      "./"
-    ],
-    "moduleNameMapper": {
-      "^.+\\.(css|scss)$": "<rootDir>/test/__setup__/styleMock.js",
-      "^(.+\\.(jpe?g|png|gif|ttf|eot|svg|md)|expose.*|bootstrap.*|app-store)$": "<rootDir>/test/__setup__/fileMock.js"
-    },
-    "setupFiles": [
-      "<rootDir>/test/__setup__/index.js"
-    ],
-    "testRegex": "/test/.*?\\.(test|spec)\\.js$",
-    "collectCoverage": false,
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 40,
-        "functions": 40,
-        "lines": 40,
-        "statements": 40
-      }
-    },
-    "verbose": true
-  }
+  ]
 }
