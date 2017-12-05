@@ -8,7 +8,6 @@ class ReactCreditCards extends React.Component {
     super(props);
 
     this.state = {
-      isValid: false,
       type: {
         name: 'unknown',
         maxLength: 16,
@@ -43,7 +42,6 @@ class ReactCreditCards extends React.Component {
 
   static defaultProps = {
     acceptedCards: [],
-    expiry: '',
     locale: {
       valid: 'valid thru',
     },
@@ -120,7 +118,6 @@ class ReactCreditCards extends React.Component {
     const isValid = Payment.fns.validateCardNumber(number);
 
     this.setState({
-      isValid,
       type: typeState,
     });
 
@@ -134,7 +131,7 @@ class ReactCreditCards extends React.Component {
     const { type } = this.state;
     const { number } = this.props;
 
-    let maxLength = type.maxLength;
+    let { maxLength } = type;
     let string = typeof number === 'number' ? number.toString() : number;
     if (isNaN(parseInt(number, 10))) {
       string = '';
@@ -173,7 +170,7 @@ class ReactCreditCards extends React.Component {
   }
 
   formatExpiry() {
-    const { expiry } = this.props;
+    const { expiry = '' } = this.props;
 
     const value = expiry.toString();
     const maxLength = 6;

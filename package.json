@@ -13,16 +13,28 @@
       "email": "gil.barbara@amaro.com"
     }
   ],
-  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amarofashion/react-credit-cards.git"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/amarofashion/react-credit-cards/issues"
   },
   "homepage": "https://github.com/amarofashion/react-credit-cards#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "es",
+    "lib",
+    "src"
+  ],
+  "keywords": [
+    "react",
+    "react-component",
+    "credit card",
+    "payment"
+  ],
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
     "prop-types": "^15.6.0"
@@ -48,6 +60,7 @@
     "chalk": "^2.1.0",
     "clean-webpack-plugin": "^0.1.17",
     "copy-webpack-plugin": "^4.1.1",
+    "cross-env": "^5.1.1",
     "css-loader": "^0.28.7",
     "date-fns": "^1.28.5",
     "enzyme": "^3.1.0",
@@ -73,12 +86,14 @@
     "normalize.css": "^7.0.0",
     "postcss": "^6.0.13",
     "postcss-loader": "^2.0.6",
+    "postcss-cli": "^4.1.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-test-renderer": "^16.0.0",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "source-map-support": "^0.5.0",
     "style-loader": "^0.19.0",
@@ -93,18 +108,22 @@
     "webpack-node-externals": "^1.6.0"
   },
   "scripts": {
+    "build": "npm run clean && npm run build:commonjs && npm run build:es && npm run build:styles",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src -d lib",
+    "build:es": "cross-env NODE_ENV=production babel src -d es",
+    "build:styles": "node tasks build-styles",
+    "watch": "npm run build:commonjs -- -w",
+    "clean": "rimraf es && rimraf lib",
     "start": "node demo/config/webpack.server.js",
-    "watch": "webpack --config config/webpack.config.js",
-    "build": "NODE_ENV=production webpack --config config/webpack.build.js",
     "build:demo": "NODE_ENV=production webpack --config demo/config/webpack.build.js",
     "analyze": "NODE_ENV=production webpack --config config/webpack.build.js --profile --json > webpack.stats.json",
     "lint": "eslint  --ext .js --ext .jsx src test config",
     "lint:styles": "stylelint 'src/**/*.scss'",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "precommit": "node config/tools commits && npm run lint && npm run lint:styles && npm test",
-    "prepublish": "npm run build",
-    "postmerge": "node config/tools update && npm update"
+    "precommit": "node tasks commits && npm run lint && npm run lint:styles && npm test",
+    "postmerge": "node tasks update && npm update",
+    "prepublishOnly": "npm run build"
   },
   "browserslist": [
     "ie >= 10",
