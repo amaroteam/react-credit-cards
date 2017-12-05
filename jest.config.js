@@ -11,9 +11,9 @@ module.exports = {
     'src',
     './',
   ],
-  "moduleNameMapper": {
-    "^.+\\.(css|scss)$": "<rootDir>/test/__setup__/styleMock.js",
-    "^.+\\.(jpe?g|png|gif|ttf|eot|svg|md)$": "<rootDir>/test/__setup__/fileMock.js"
+  moduleNameMapper: {
+    '^.+\\.(css|scss)$': '<rootDir>/test/__setup__/styleMock.js',
+    '^.+\\.(jpe?g|png|gif|ttf|eot|svg|md)$': '<rootDir>/test/__setup__/fileMock.js',
   },
   setupFiles: [
     '<rootDir>/test/__setup__/shim.js',
@@ -26,10 +26,10 @@ module.exports = {
   ],
   coverageThreshold: {
     global: {
-      branches: 65,
-      functions: 65,
-      lines: 65,
-      statements: 65
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90,
     },
   },
   verbose: true,
