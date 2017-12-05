@@ -1,7 +1,10 @@
 React Credit Cards
 ===
 
-[![NPM](https://badge.fury.io/js/react-credit-cards.svg)](https://www.npmjs.com/package/react-credit-cards) [![Travis](https://travis-ci.org/amarofashion/react-credit-cards.svg?branch=master)](https://travis-ci.org/amarofashion/react-credit-cards) [![Code Climate](https://codeclimate.com/github/amarofashion/react-credit-cards/badges/gpa.svg)](https://codeclimate.com/github/amarofashion/react-credit-cards) [![Test Coverage](https://codeclimate.com/github/amarofashion/react-credit-cards/badges/coverage.svg)](https://codeclimate.com/github/amarofashion/react-credit-cards/coverage)
+[![NPM](https://badge.fury.io/js/react-credit-cards.svg)](https://www.npmjs.com/package/react-credit-cards)
+[![Travis](https://travis-ci.org/amarofashion/react-credit-cards.svg?branch=master)](https://travis-ci.org/amarofashion/react-credit-cards)
+[![Maintainability](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/maintainability)](https://codeclimate.com/github/amarofashion/react-credit-cards/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/test_coverage)](https://codeclimate.com/github/amarofashion/react-credit-cards/test_coverage)
 
 A modern credit card component for React 0.14+.
 
