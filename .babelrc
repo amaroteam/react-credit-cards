@@ -16,12 +16,27 @@
     "production": {
       "plugins": [
         "array-includes",
-        "transform-flow-strip-types"
+        "transform-flow-strip-types",
+        "transform-object-assign"
       ]
     },
     "commonjs": {
+      "presets": [
+        [
+          "env", {
+          "useBuiltIns": true,
+          "targets": {
+            "browsers": ["last 2 versions", "safari >= 7"]
+          }
+        }
+        ],
+        "react",
+        "stage-1"
+      ],
       "plugins": [
-        ["transform-es2015-modules-commonjs", { "loose": true }]
+        "array-includes",
+        "transform-flow-strip-types",
+        "transform-object-assign"
       ]
     },
     "test": {

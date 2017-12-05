@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Payment from 'payment';
-import './styles.scss';
 
 class ReactCreditCards extends React.Component {
   constructor(props) {
