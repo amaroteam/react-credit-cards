@@ -1,6 +1,6 @@
 {
   "name": "react-credit-cards",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "Beautiful credit cards for your payment forms",
   "author": "AMARO Fashion <it@amaro.com>",
   "contributors": [
@@ -100,10 +100,11 @@
     "stylelint": "^8.3.1",
     "stylelint-config-standard": "^18.0.0",
     "stylelint-declaration-strict-value": "^1.0.4",
-    "stylelint-order": "^0.7.0",
+    "stylelint-order": "^0.8.0",
     "stylelint-scss": "^2.2.0",
+    "watch-run": "^1.2.5",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.5",
+    "webpack-dev-server": "^2.9.7",
     "webpack-merge": "^4.1.1",
     "webpack-node-externals": "^1.6.0",
     "yargs": "^10.0.3"
@@ -113,7 +114,7 @@
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src -d lib",
     "build:es": "cross-env NODE_ENV=production babel src -d es",
     "build:styles": "node tasks build-styles",
-    "watch": "npm run build:commonjs -- -w",
+    "watch": "npm run build && watch-run -p 'src/**/*.js' npm run build:es",
     "clean": "rimraf es && rimraf lib",
     "start": "node demo/config/webpack.server.js",
     "build:demo": "NODE_ENV=production webpack --config demo/config/webpack.build.js",
@@ -126,5 +127,9 @@
     "postmerge": "node tasks update && npm update",
     "prepublishOnly": "npm run build"
   },
-  "browserslist": ["last 2 versions", "safari >= 8", "ios > 8"]
+  "browserslist": [
+    "last 2 versions",
+    "safari >= 8",
+    "ios > 8"
+  ]
 }

@@ -6,7 +6,7 @@ React Credit Cards
 [![Maintainability](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/maintainability)](https://codeclimate.com/github/amarofashion/react-credit-cards/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/test_coverage)](https://codeclimate.com/github/amarofashion/react-credit-cards/test_coverage)
 
-A modern credit card component for React 0.14+.
+A modern credit card component for React.
 
 ![demo](https://raw.githubusercontent.com/amarofashion/react-credit-cards/master/docs/media/rccs.gif)
 
@@ -42,13 +42,15 @@ Don't forget to import the `react-credit-cards/lib/styles.scss` in your main.scs
 
 - `name` {string}: Name on card. *
 - `number` {string|number}: Card number. *
-- `expiry` {string|number}: Card expiry date. *
+- `expiry` {string|number}: Card expiry date. `10/20` or `012017` *
 - `cvc` {string|number}: Card CVC/CVV. *
-- `focused` {string}: Focused card field. `name|number|expiry|cvc` *
+- `focused` {string}: Focused card field. `name|number|expiry|cvc`
 - `locale` {object}: Localization text (e.g. `{ valid: 'valid thru' }`).
 - `placeholders` {object}: Placeholder text (e.g. `{ name: 'YOUR NAME HERE' }`).
+- `preview` {bool}: To use the card to show scrambled data (e.g. `**** 4567`).
+- `issuer` {string}: Set the issuer for the `preview` mode (e.g. `visa|mastercard|...`)
 - `acceptedCards` {array}: If you want to limit the accepted cards. (e.g. `['visa', 'mastercard']`
-- `callback` {func}: A callback function that will be called when the card number has changed with 2 paramaters: `type {{ issuer: 'visa', maxLenght: 19 }}, isValid {boolean}`
+- `callback` {func}: A callback function that will be called when the card number has changed with 2 paramaters: `type ({ issuer: 'visa', maxLenght: 19 }), isValid ({boolean})`
 
 \* *Required fields*
 
