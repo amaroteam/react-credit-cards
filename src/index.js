@@ -12,6 +12,8 @@ class ReactCreditCards extends React.Component {
         maxLength: 16,
       },
     };
+
+    this.setCards();
   }
 
   static propTypes = {
@@ -26,6 +28,7 @@ class ReactCreditCards extends React.Component {
       PropTypes.number,
     ]).isRequired,
     focused: PropTypes.string,
+    issuer: PropTypes.string,
     locale: PropTypes.shape({
       valid: PropTypes.string,
     }),
@@ -37,6 +40,7 @@ class ReactCreditCards extends React.Component {
     placeholders: PropTypes.shape({
       name: PropTypes.string,
     }),
+    preview: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -47,14 +51,12 @@ class ReactCreditCards extends React.Component {
     placeholders: {
       name: 'YOUR NAME HERE',
     },
+    preview: false,
   };
-
-  componentWillMount() {
-    this.setCards();
-  }
 
   componentDidMount() {
     const { number } = this.props;
+
     this.updateType(number);
   }
 
@@ -73,6 +75,85 @@ class ReactCreditCards extends React.Component {
     if (acceptedCards.toString() !== nextAcceptedCards.toString()) {
       this.setCards(nextProps);
     }
+  }
+
+  get issuer() {
+    const { type } = this.state;
+    const { issuer, preview } = this.props;
+
+    return preview && issuer ? issuer.toLowerCase() : type.issuer;
+  }
+
+  get number() {
+    const { type } = this.state;
+    const { number, preview } = this.props;
+
+    let maxLength = preview ? 19 : type.maxLength;
+    let nextNumber = typeof number === 'number' ? number.toString() : number.replace(/[A-Za-z]| /g, '');
+
+    if (isNaN(parseInt(nextNumber, 10)) && !preview) {
+      nextNumber = '';
+    }
+
+    if (maxLength > 16) {
+      maxLength = nextNumber.length <= 16 ? 16 : maxLength;
+    }
+
+    if (nextNumber.length > maxLength) {
+      nextNumber = nextNumber.slice(0, maxLength);
+    }
+
+    while (nextNumber.length < maxLength) {
+      nextNumber += '•';
+    }
+
+    if (['amex', 'dinersclub'].includes(this.issuer)) {
+      const format = [0, 4, 10];
+      const limit = [4, 6, 5];
+      nextNumber = `${nextNumber.substr(format[0], limit[0])} ${nextNumber.substr(format[1], limit[1])} ${nextNumber.substr(format[2], limit[2])}`;
+    }
+    else if (nextNumber.length > 16) {
+      const format = [0, 4, 8, 12];
+      const limit = [4, 7];
+      nextNumber = `${nextNumber.substr(format[0], limit[0])} ${nextNumber.substr(format[1], limit[0])} ${nextNumber.substr(format[2], limit[0])} ${nextNumber.substr(format[3], limit[1])}`;
+    }
+    else {
+      for (let i = 1; i < (maxLength / 4); i++) {
+        const space_index = (i * 4) + (i - 1);
+        nextNumber = `${nextNumber.slice(0, space_index)} ${nextNumber.slice(space_index)}`;
+      }
+    }
+
+    return nextNumber;
+  }
+
+  get expiry() {
+    const { expiry = '' } = this.props;
+    const date = typeof expiry === 'number' ? expiry.toString() : expiry;
+    let month = '';
+    let year = '';
+
+    if (date.includes('/')) {
+      [month, year] = date.split('/');
+    }
+    else if (date.length) {
+      month = date.substr(0, 2);
+      year = date.substr(2, 6);
+    }
+
+    while (month.length < 2) {
+      month += '•';
+    }
+
+    if (year.length > 2) {
+      year = year.substr(2, 4);
+    }
+
+    while (year.length < 2) {
+      year += '•';
+    }
+
+    return `${month}/${year}`;
   }
 
   setCards(props = this.props) {
@@ -126,83 +207,17 @@ class ReactCreditCards extends React.Component {
     }
   }
 
-  formatNumber() {
-    const { type } = this.state;
-    const { number } = this.props;
-
-    let { maxLength } = type;
-    let string = typeof number === 'number' ? number.toString() : number;
-    if (isNaN(parseInt(number, 10))) {
-      string = '';
-    }
-
-    if (type.maxLength > 16) {
-      maxLength = string.length <= 16 ? 16 : type.maxLength;
-    }
-
-    if (string.length > maxLength) {
-      string = string.slice(0, maxLength);
-    }
-
-    while (string.length < maxLength) {
-      string += '•';
-    }
-
-    if (['amex', 'dinersclub'].includes(type.issuer)) {
-      const format = [0, 4, 10];
-      const limit = [4, 6, 5];
-      string = `${string.substr(format[0], limit[0])} ${string.substr(format[1], limit[1])} ${string.substr(format[2], limit[2])}`;
-    }
-    else if (number.length > 16) {
-      const format = [0, 4, 8, 12];
-      const limit = [4, 7];
-      string = `${string.substr(format[0], limit[0])} ${string.substr(format[1], limit[0])} ${string.substr(format[2], limit[0])} ${string.substr(format[3], limit[1])}`;
-    }
-    else {
-      for (let i = 1; i < (maxLength / 4); i++) {
-        const space_index = (i * 4) + (i - 1);
-        string = `${string.slice(0, space_index)} ${string.slice(space_index)}`;
-      }
-    }
-
-    return string;
-  }
-
-  formatExpiry() {
-    const { expiry = '' } = this.props;
-
-    const value = expiry.toString();
-    const maxLength = 6;
-    let string = value || '••/••';
-
-    if (value.match(/\//)) {
-      string = expiry.replace('/', '');
-    }
-
-    if (!string.match(/^[0-9]*$/)) {
-      return '••/••';
-    }
-
-    while (string.length < 4) {
-      string += '•';
-    }
-
-    return `${string.slice(0, 2)}/${string.slice(2, maxLength)}`;
-  }
-
   render() {
-    const { type } = this.state;
     const { cvc, focused, locale, name, placeholders } = this.props;
-    const number = this.formatNumber();
-    const expiry = this.formatExpiry();
+    const { number, expiry } = this;
 
     return (
       <div key="Cards" className="rccs">
         <div
           className={[
             'rccs__card',
-            `rccs__card--${type.issuer}`,
-            focused === 'cvc' && type.issuer !== 'amex' ? 'rccs__card--flipped' : '',
+            `rccs__card--${this.issuer}`,
+            focused === 'cvc' && this.issuer !== 'amex' ? 'rccs__card--flipped' : '',
           ].join(' ').trim()}
         >
           <div className="rccs__card--front">

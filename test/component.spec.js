@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import Cards from '../src';
+import ReactCreditCards from '../src';
 
 const mockCallback = jest.fn();
 
@@ -15,10 +15,10 @@ const props = {
 };
 
 function setup(ownProps = props) {
-  return mount(<Cards {...ownProps} />);
+  return mount(<ReactCreditCards {...ownProps} />);
 }
 
-describe('Cards', () => {
+describe('ReactCreditCards', () => {
   const wrapper = setup();
 
   beforeEach(() => {
@@ -306,14 +306,40 @@ describe('Cards', () => {
     expect(wrapper.find('.rccs__expiry__value').text()).toBe('12/1•');
   });
 
+  it('should handle long expiry props', () => {
+    wrapper.setProps({
+      expiry: '01/2025',
+    });
+
+    expect(wrapper.find('.rccs__expiry__value').text()).toBe('01/25');
+  });
+
   it('should handle new expiry props', () => {
     wrapper.setProps({
-      expiry: '1218',
+      expiry: 1218,
       focused: 'expiry',
     });
 
     expect(wrapper.find('.rccs__expiry').hasClass('rccs--focused')).toBe(true);
     expect(wrapper.find('.rccs__expiry__value').text()).toBe('12/18');
+  });
+
+  it('should handle empty expiry props', () => {
+    wrapper.setProps({
+      expiry: undefined,
+      focused: 'expiry',
+    });
+
+    expect(wrapper.find('.rccs__expiry__value').text()).toBe('••/••');
+  });
+
+  it('should handle malformatted expiry props', () => {
+    wrapper.setProps({
+      expiry: '/',
+      focused: 'expiry',
+    });
+
+    expect(wrapper.find('.rccs__expiry__value').text()).toBe('••/••');
   });
 
   it('should handle new CVC props', () => {
@@ -342,5 +368,27 @@ describe('Cards', () => {
     });
 
     expect(typeof wrapper.find('.rccs__number').text()).toBe('string');
+  });
+
+  it('should handle preview', () => {
+    wrapper.setProps({
+      number: '**** **** **** 7056',
+      preview: true,
+      issuer: 'Hipercard',
+    });
+
+    expect(wrapper.find('.rccs__number').text()).toBe('**** **** **** 7056');
+    expect(wrapper.find('.rccs__card').hasClass('rccs__card--hipercard')).toBe(true);
+  });
+
+  it('should fail with preview set to false', () => {
+    wrapper.setProps({
+      number: '**** **** **** 1234',
+      preview: false,
+      issuer: 'Elo',
+    });
+
+    expect(wrapper.find('.rccs__number').text()).toBe('•••• •••• •••• ••••');
+    expect(wrapper.find('.rccs__card').hasClass('rccs__card--elo')).toBe(false);
   });
 });
