@@ -50,7 +50,7 @@ Don't forget to import the `react-credit-cards/lib/styles.scss` in your main.scs
 - `preview` {bool}: To use the card to show scrambled data (e.g. `**** 4567`).
 - `issuer` {string}: Set the issuer for the `preview` mode (e.g. `visa|mastercard|...`)
 - `acceptedCards` {array}: If you want to limit the accepted cards. (e.g. `['visa', 'mastercard']`
-- `callback` {func}: A callback function that will be called when the card number has changed with 2 paramaters: `type ({ issuer: 'visa', maxLenght: 19 }), isValid ({boolean})`
+- `callback` {func}: A callback function that will be called when the card number has changed with 2 paramaters: `type ({ issuer: 'visa', maxLength: 19 }), isValid ({boolean})`
 
 \* *Required fields*
 
