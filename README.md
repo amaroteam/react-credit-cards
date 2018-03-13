@@ -32,7 +32,9 @@ npm install --save react-credit-cards
     />
 ```
 
-Don't forget to import the `react-credit-cards/lib/styles.scss` in your main.scss file or import it directly in your component if you are using webpack.
+Don't forget to import the `react-credit-cards/lib/styles.scss` if you are using SASS in your project.  
+Or you can import the CSS:  
+`import 'react-credit-cards/es/styles-compiled.css';`
 
 ### Features
 
