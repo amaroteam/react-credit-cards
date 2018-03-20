@@ -40,7 +40,7 @@
     "prop-types": "^15.6.0"
   },
   "dependencies": {
-    "payment": "^2.3.0"
+    "payment": "git://github.com/lucascavalheiro/payment.git"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.1",
