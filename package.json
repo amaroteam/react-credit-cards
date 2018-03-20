@@ -40,10 +40,11 @@
     "prop-types": "^15.6.0"
   },
   "dependencies": {
-    "payment": "^2.3.0"
+    "payment": "git://github.com/lucascavalheiro/payment.git"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.1",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.3",
     "babel-jest": "^21.2.0",
