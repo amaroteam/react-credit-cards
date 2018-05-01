@@ -88,7 +88,7 @@ class ReactCreditCards extends React.Component {
     const { type } = this.state;
     const { number, preview } = this.props;
 
-    let maxLength = preview ? 19 : type.maxLength;
+    let { maxLength } = type;
     let nextNumber = typeof number === 'number' ? number.toString() : number.replace(/[A-Za-z]| /g, '');
 
     if (isNaN(parseInt(nextNumber, 10)) && !preview) {
@@ -101,6 +101,20 @@ class ReactCreditCards extends React.Component {
 
     if (nextNumber.length > maxLength) {
       nextNumber = nextNumber.slice(0, maxLength);
+    }
+
+    if (preview) {
+      const numDigits = ['amex', 'dinersclub'].includes(this.issuer) ? 5 : 4;
+      const cutoff = maxLength - numDigits;
+      let tempNumber = nextNumber;
+      if (nextNumber.length <= (cutoff)) {
+        tempNumber = '*'.repeat(nextNumber.length);
+      }
+      else {
+        tempNumber = '*'.repeat(cutoff);
+        tempNumber = tempNumber.concat(nextNumber.slice(cutoff));
+      }
+      nextNumber = tempNumber;
     }
 
     while (nextNumber.length < maxLength) {
