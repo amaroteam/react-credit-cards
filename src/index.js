@@ -88,7 +88,7 @@ class ReactCreditCards extends React.Component {
     const { type } = this.state;
     const { number, preview } = this.props;
 
-    let { maxLength } = type;
+    let maxLength = preview ? 19 : type.maxLength;
     let nextNumber = typeof number === 'number' ? number.toString() : number.replace(/[A-Za-z]| /g, '');
 
     if (isNaN(parseInt(nextNumber, 10)) && !preview) {
