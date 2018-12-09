@@ -67,21 +67,19 @@ module.exports = yargs
   .command({
     command: 'update',
     desc: 'run `npm update` if package.json has changed',
-    handler: () => {
-      return run('git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD')
-        .then(({ stdout }) => {
-          if (stdout.match('package.json')) {
-            console.log(chalk.yellow('▼ Updating...'));
-            exec('npm update').stdout.pipe(process.stdout);
-          }
-          else {
-            console.log(chalk.green('✔ Nothing to update'));
-          }
-        })
-        .catch(err => {
-          throw new Error(err);
-        });
-    },
+    handler: () => run('git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD')
+      .then(({ stdout }) => {
+        if (stdout.match('package.json')) {
+          console.log(chalk.yellow('▼ Updating...'));
+          exec('npm update').stdout.pipe(process.stdout);
+        }
+        else {
+          console.log(chalk.green('✔ Nothing to update'));
+        }
+      })
+      .catch(err => {
+        throw new Error(err);
+      }),
   })
   .demandCommand()
   .help()

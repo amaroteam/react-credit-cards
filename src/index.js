@@ -19,6 +19,8 @@ class ReactCreditCards extends React.Component {
   static propTypes = {
     acceptedCards: PropTypes.array,
     callback: PropTypes.func,
+    checkNationalMaxLength: PropTypes.func,
+    checkNationalType: PropTypes.func,
     cvc: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
@@ -33,6 +35,8 @@ class ReactCreditCards extends React.Component {
       valid: PropTypes.string,
     }),
     name: PropTypes.string.isRequired,
+    nationalCardsStyles: PropTypes.object,
+    nationalCardsSupport: PropTypes.bool,
     number: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
@@ -177,9 +181,12 @@ class ReactCreditCards extends React.Component {
 
   updateType(number) {
     const { callback } = this.props;
-    const type = Payment.fns.cardType(number) || 'unknown';
+    let type = this.props.nationalCardsSupport ? this.props.checkNationalType(number) : null;
+    type = type === null ? Payment.fns.cardType(number) : type;
 
-    let maxLength = 16;
+    let maxLength = this.props.nationalCardsSupport ? this.props.checkNationalMaxLength(number) : 16;
+
+    type = type || 'unknown';
 
     if (type === 'amex') {
       maxLength = 15;
@@ -195,6 +202,7 @@ class ReactCreditCards extends React.Component {
       issuer: type,
       maxLength,
     };
+
     const isValid = Payment.fns.validateCardNumber(number);
 
     this.setState({
@@ -220,9 +228,9 @@ class ReactCreditCards extends React.Component {
             focused === 'cvc' && this.issuer !== 'amex' ? 'rccs__card--flipped' : '',
           ].join(' ').trim()}
         >
-          <div className="rccs__card--front">
-            <div className="rccs__card__background" />
-            <div className="rccs__issuer" />
+          <div className="rccs__card--front" style={this.props.nationalCardsStyles ? this.props.nationalCardsStyles[this.issuer].div : null}>
+            <div className="rccs__card__background" style={this.props.nationalCardsStyles ? this.props.nationalCardsStyles[this.issuer].background : null} />
+            <div className="rccs__issuer" style={this.props.nationalCardsStyles ? this.props.nationalCardsStyles[this.issuer].issuer : null} />
             <div
               className={[
                 'rccs__cvc__front',

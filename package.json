@@ -82,7 +82,7 @@
     "image-webpack-loader": "^3.4.2",
     "jest-cli": "^21.2.1",
     "jsdom": "^11.5.1",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.10.0",
     "normalize.css": "^7.0.0",
     "postcss": "^6.0.14",
     "postcss-cli": "^4.1.1",
