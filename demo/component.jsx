@@ -50,8 +50,38 @@ export default class Demo extends React.Component {
     console.log(type, isValid); //eslint-disable-line no-console
   };
 
+  handleCheckNationalType(number) {
+    const bin = number.toString().substring(0, 6);
+    //Bin pattern Cabal card
+    if (/^((627170)|(589657)|(603522)|(604((20[1-9])|(2[1-9][0-9])|(3[0-9]{2})|(400))))/.test(bin)) {
+      return 'cabal';
+    } else {
+      return null;
+    }
+  };
+
+  handleCheckNationalMaxLength(type) {
+    if ('cabal') {
+      return 16
+    }
+  };
+
   render() {
     const { name, number, expiry, cvc, focused } = this.state;
+
+    const nationalCardsStyles = {
+      cabal: {
+        div: {
+          color: '#555 !default'
+        },
+        background: {
+          background: 'linear-gradient(25deg, #d5cea6, #b7ad70)'
+        },
+        issuer: {
+          backgroundImage: 'url(url-image)'
+        }
+      }
+    }
     
     return (
       <div className="rccs__demo" style={{ opacity: 0 }}>
@@ -62,8 +92,13 @@ export default class Demo extends React.Component {
             name={name}
             expiry={expiry}
             cvc={cvc}
+            acceptedCards={['visa', 'amex', 'mastercard']}
             focused={focused}
             callback={this.handleCallback}
+            customCardsSupport={true}
+            checkCustomType={this.handleCheckNationalType}
+            checkCustomMaxLength={this.handleCheckNationalMaxLength}
+            customCardsStyles={nationalCardsStyles}
           />
           <form>
             <div>
