@@ -53,9 +53,66 @@ Or you can import the CSS:
 - `issuer` {string}: Set the issuer for the `preview` mode (e.g. `visa|mastercard|...`)
 - `acceptedCards` {array}: If you want to limit the accepted cards. (e.g. `['visa', 'mastercard']`
 - `callback` {func}: A callback function that will be called when the card number has changed with 2 paramaters: `type ({ issuer: 'visa', maxLength: 19 }), isValid ({boolean})`
+- `customCardsSupport` {bool}: To indicate that component have custom cards.
+- `checkCustomType` {func}: A function to determine custom card issuer.
+- `checkCustomMaxLength` {func}: A function to determine custom card max length.
+- `customCardsStyles` {object}: Object to style the custom cards. Should have 3 properties (div, background and issuer) per issuer.
 
 \* *Required fields*
 
+**Usage with custom cards**
+
+```jsx
+    import Cards from 'react-credit-cards';
+
+    ...
+
+    handleCheckNationalType(number) {
+      const bin = number.toString().substring(0, 6);
+      //Bin pattern Cabal card
+      if (/^((627170)|(589657)|(603522)|(604((20[1-9])|(2[1-9][0-9])|(3[0-9]{2})|(400))))/.test(bin)) {
+        return 'cabal';
+      } else {
+        return null;
+      }
+    };
+
+    handleCheckNationalMaxLength(type) {
+      if ('cabal') {
+        return 16
+      }
+    };
+
+    ...
+
+    const nationalCardsStyles = {
+      cabal: {
+        div: {
+          color: '#555 !default'
+        },
+        background: {
+          background: 'linear-gradient(25deg, #d5cea6, #b7ad70)'
+        },
+        issuer: {
+          backgroundImage: 'url(http://www.pasajerodrigo.com.ar/wp-content/uploads/2014/07/cabal.png)'
+        }
+      }
+    }
+
+    ...
+
+    <Cards
+      number={input.number.value}
+      name={input.name.value}
+      expiry={input.expiry.value}
+      cvc={input.cvc.value}
+      focused={state.focused}
+      customCardsSupport={true}
+      checkCustomType={this.handleCheckNationalType}
+      checkCustomMaxLength={this.handleCheckNationalMaxLength}
+      customCardsStyles={customCardsStyles}
+    />
+```
 
 ## SCSS options
 
