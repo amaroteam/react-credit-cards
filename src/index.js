@@ -271,7 +271,7 @@ class ReactCreditCards extends React.Component {
             <div className="rccs__chip" />
           </div>
           <div className="rccs__card--back">
-            <div className="rccs__card__background" />
+            <div className="rccs__card__background" style={this.props.customCardsStyles && this.props.customCardsStyles[this.issuer] ? this.props.customCardsStyles[this.issuer].background : null} />
             <div className="rccs__stripe" />
             <div className="rccs__signature" />
             <div
@@ -282,7 +282,7 @@ class ReactCreditCards extends React.Component {
             >
               {cvc}
             </div>
-            <div className="rccs__issuer" />
+            <div className="rccs__issuer" style={this.props.customCardsStyles && this.props.customCardsStyles[this.issuer] ? this.props.customCardsStyles[this.issuer].issuer : null} />
           </div>
         </div>
       </div>
