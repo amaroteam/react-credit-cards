@@ -1,5 +1,4 @@
-React Credit Cards
-===
+# React Credit Cards
 
 [![NPM](https://badge.fury.io/js/react-credit-cards.svg)](https://www.npmjs.com/package/react-credit-cards)
 [![Travis](https://travis-ci.org/amarofashion/react-credit-cards.svg?branch=master)](https://travis-ci.org/amarofashion/react-credit-cards)
@@ -13,6 +12,7 @@ A modern credit card component for React.
 [Demo](https://amarofashion.github.io/react-credit-cards/)
 
 ### Install
+
 ```
 npm install --save react-credit-cards
 ```
@@ -42,10 +42,10 @@ Or you can import the CSS:
 
 ## Props
 
-- `name` {string}: Name on card. *
-- `number` {string|number}: Card number. *
-- `expiry` {string|number}: Card expiry date. `10/20` or `012017` *
-- `cvc` {string|number}: Card CVC/CVV. *
+- `name` {string}: Name on card. \*
+- `number` {string|number}: Card number. \*
+- `expiry` {string|number}: Card expiry date. `10/20` or `012017` \*
+- `cvc` {string|number}: Card CVC/CVV. \*
 - `focused` {string}: Focused card field. `name|number|expiry|cvc`
 - `locale` {object}: Localization text (e.g. `{ valid: 'valid thru' }`).
 - `placeholders` {object}: Placeholder text (e.g. `{ name: 'YOUR NAME HERE' }`).
@@ -54,8 +54,7 @@ Or you can import the CSS:
 - `acceptedCards` {array}: If you want to limit the accepted cards. (e.g. `['visa', 'mastercard']`
 - `callback` {func}: A callback function that will be called when the card number has changed with 2 paramaters: `type ({ issuer: 'visa', maxLength: 19 }), isValid ({boolean})`
 
-\* *Required fields*
-
+\* _Required fields_
 
 ## SCSS options
 
@@ -95,7 +94,7 @@ Or you can import the CSS:
 - `$rccs-dankort-background`: Defaults to `linear-gradient(25deg, #ccc, #999)`
 - `$rccs-dinersclub-background`: Defaults to `linear-gradient(25deg, #fff, #eee)`
 - `$rccs-discover-background`: Defaults to `linear-gradient(25deg, #fff, #eee)`
-- `$rccs-mastercard-background`: Defaults to `linear-gradient(25deg, #f37b26, #fdb731)`
+- `$rccs-mastercard-background`: Defaults to `linear-gradient(25deg, #e8e9e5, #fbfbfb)`
 - `$rccs-visa-background`: Defaults to `linear-gradient(25deg, #0f509e, #1399cd)`
 - `$rccs-elo-background`: Defaults to `linear-gradient(25deg, #211c18, #aaa7a2)`
 - `$rccs-hipercard-background`: Defaults to `linear-gradient(25deg, #8b181b, #de1f27)`
@@ -116,10 +115,11 @@ Now, if you go to `http://localhost:3000` in your browser, you should see the de
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process of contributing to the project.
 
 ## Useful links
+
 [EBANK's test numbers](https://www.ebanx.com/business/en/developers/integrations/testing/credit-card-test-numbers)  
 [Adyen's test numbers](https://gist.github.com/j3j5/8b3e48ccad746b90a54a)  
 [Worldpay's test card numbers](https://support.worldpay.com/support/kb/bg/testandgolive/tgl5103.html)  
-[Brazilian cards patterns](https://github.com/erikhenrique/bin-cc/blob/master/README.md)  
+[Brazilian cards patterns](https://github.com/erikhenrique/bin-cc/blob/master/README.md)
 
 ## LICENSE
 

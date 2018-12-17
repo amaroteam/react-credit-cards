@@ -29,7 +29,7 @@ $rccs-amex-background: linear-gradient(25deg, #308c67, #a3f2cf) !default;
 $rccs-dankort-background: linear-gradient(25deg, #ccc, #999) !default;
 $rccs-dinersclub-background: linear-gradient(25deg, #fff, #eee) !default;
 $rccs-discover-background: linear-gradient(25deg, #fff, #eee) !default;
-$rccs-mastercard-background: linear-gradient(25deg, #f37b26, #fdb731) !default;
+$rccs-mastercard-background: linear-gradient(25deg, #fbfbfb, #e8e9e5) !default;
 $rccs-visa-background: linear-gradient(25deg, #0f509e, #1399cd) !default;
 $rccs-elo-background: linear-gradient(25deg, #211c18, #aaa7a2) !default;
 $rccs-hipercard-background: linear-gradient(25deg, #8b181b, #de1f27) !default;
@@ -245,6 +245,10 @@ $rccs-visaelectron-logo: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBl
 
     &--maestro,
     &--mastercard {
+      > div {
+        color: $rccs-dark-text-color;
+      }
+
       .rccs__card__background {
         background: $rccs-mastercard-background;
       }
