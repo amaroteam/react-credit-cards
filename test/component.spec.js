@@ -326,7 +326,7 @@ describe('ReactCreditCards', () => {
 
   it('should handle empty expiry props', () => {
     wrapper.setProps({
-      expiry: undefined,
+      expiry: '',
       focused: 'expiry',
     });
 
