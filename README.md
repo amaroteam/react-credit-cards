@@ -103,7 +103,7 @@ Or you can import the CSS:
 
 Here's how you can get started developing locally:
 
-    $ git clone git@github.com:amarofashion/react-credit-cards.git
+    $ git clone https://github.com/amarofashion/react-credit-cards.git
     $ cd react-credit-cards
     $ npm install
     $ npm start
