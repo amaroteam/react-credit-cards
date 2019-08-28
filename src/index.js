@@ -60,16 +60,16 @@ class ReactCreditCards extends React.Component {
     this.updateType(number);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     const { acceptedCards, number } = this.props;
     const { acceptedCards: prevAcceptedCards, number: prevNumber } = prevProps;
 
-    if (number !== prevNumber) {
+    if (prevNumber !== number) {
       this.updateType(number);
     }
 
-    if (acceptedCards.toString() !== prevAcceptedCards.toString()) {
-      this.setCards(acceptedCards);
+    if (prevAcceptedCards.toString() !== acceptedCards.toString()) {
+      this.setCards();
     }
   }
 
@@ -152,8 +152,8 @@ class ReactCreditCards extends React.Component {
     return `${month}/${year}`;
   }
 
-  setCards(props = this.props) {
-    const { acceptedCards } = props;
+  setCards() {
+    const { acceptedCards } = this.props;
     let newCardArray = [];
 
     if (acceptedCards.length) {
