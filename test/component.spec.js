@@ -82,6 +82,8 @@ describe('ReactCreditCards', () => {
       focused: 'number',
     });
 
+    wrapper.update();
+
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--amex')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('3782 822463 10005');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
@@ -95,6 +97,8 @@ describe('ReactCreditCards', () => {
       number: '5019717010103742',
       focused: 'number',
     });
+
+    wrapper.update();
 
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--dankort')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('5019 7170 1010 3742');
@@ -110,6 +114,8 @@ describe('ReactCreditCards', () => {
       focused: 'number',
     });
 
+    wrapper.update();
+
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--dinersclub')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('3056 930902 5904');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
@@ -123,6 +129,8 @@ describe('ReactCreditCards', () => {
       number: '6011111111111117',
       focused: 'number',
     });
+
+    wrapper.update();
 
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--discover')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('6011 1111 1111 1117');
@@ -138,6 +146,8 @@ describe('ReactCreditCards', () => {
       focused: 'number',
     });
 
+    wrapper.update();
+
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--elo')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('6362 9700 0045 7013');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
@@ -151,6 +161,8 @@ describe('ReactCreditCards', () => {
       number: '3841005899088180330',
       focused: 'number',
     });
+
+    wrapper.update();
 
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--hipercard')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('3841 0058 9908 8180330');
@@ -166,6 +178,8 @@ describe('ReactCreditCards', () => {
       focused: 'number',
     });
 
+    wrapper.update();
+
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--jcb')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('3530 1113 3330 0000');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
@@ -179,6 +193,8 @@ describe('ReactCreditCards', () => {
       number: '6709359636227382',
       focused: 'number',
     });
+
+    wrapper.update();
 
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--laser')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('6709 3596 3622 7382');
@@ -194,6 +210,8 @@ describe('ReactCreditCards', () => {
       focused: 'number',
     });
 
+    wrapper.update();
+
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--maestro')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('6304 4142 3283 9699');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
@@ -207,6 +225,8 @@ describe('ReactCreditCards', () => {
       number: '5105105105105100',
       focused: 'number',
     });
+
+    wrapper.update();
 
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--mastercard')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('5105 1051 0510 5100');
@@ -222,6 +242,8 @@ describe('ReactCreditCards', () => {
       focused: 'number',
     });
 
+    wrapper.update();
+
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--unionpay')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('6240 0086 3140 1148');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
@@ -235,6 +257,8 @@ describe('ReactCreditCards', () => {
       number: '4012888888881881',
       focused: 'number',
     });
+
+    wrapper.update();
 
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--visa')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('4012 8888 8888 1881');
@@ -250,6 +274,8 @@ describe('ReactCreditCards', () => {
       focused: 'number',
     });
 
+    wrapper.update();
+
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--visa')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('4111 1111 1111 1111342');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
@@ -264,6 +290,8 @@ describe('ReactCreditCards', () => {
       focused: 'number',
     });
 
+    wrapper.update();
+
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--visaelectron')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('4508 2697 0621 7171');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
@@ -277,6 +305,8 @@ describe('ReactCreditCards', () => {
       number: '5512888888881881000000',
       focused: 'number',
     });
+
+    wrapper.update();
 
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--mastercard')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('5512 8888 8888 1881000');
