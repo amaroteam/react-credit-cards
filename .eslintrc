@@ -12,13 +12,6 @@
     "babel",
     "flowtype"
   ],
-  "settings": {
-    "import/resolver": {
-      "webpack": {
-        "config": "config/webpack.config.js"
-      }
-    }
-  },
   "rules": {
     "arrow-body-style": [
       1,
@@ -29,11 +22,13 @@
     "brace-style": [1, "stroustrup"],
     "camelcase": 0,
     "class-methods-use-this": 0,
-    "comma-dangle": ["warn", {
-      "arrays": "always-multiline",
-      "objects": "always-multiline",
-      "functions": "only-multiline"
-    }],
+    "comma-dangle": [
+      "warn", {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "functions": "only-multiline"
+      }
+    ],
     "dot-notation": 1,
     "generator-star-spacing": 0,
     "global-require": 0,
@@ -110,7 +105,6 @@
     "import/no-dynamic-require": 0,
     "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
     "import/no-unresolved": 1,
-    "import/no-webpack-loader-syntax": 0,
     "import/no-named-as-default": 0,
     "import/prefer-default-export": 0,
     "jsx-a11y/anchor-has-content": 0,
@@ -166,6 +160,8 @@
           ]
         }
       }
-    ]
+    ],
+    "react/static-property-placement": 0,
+    "react/jsx-props-no-spreading": 0
   }
 }
