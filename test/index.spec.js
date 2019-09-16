@@ -25,10 +25,6 @@ describe('ReactCreditCards', () => {
     mockCallback.mockClear();
   });
 
-  it('should be a Component', () => {
-    expect(wrapper.instance() instanceof React.Component).toBe(true);
-  });
-
   it('should render properly', () => {
     expect(wrapper.find('.rccs').length).toBe(1);
     expect(wrapper.find('.rccs__card').length).toBe(1);
