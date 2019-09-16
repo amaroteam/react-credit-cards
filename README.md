@@ -1,11 +1,8 @@
 # React Credit Cards
 
-[![NPM](https://badge.fury.io/js/react-credit-cards.svg)](https://www.npmjs.com/package/react-credit-cards)
-[![Travis](https://travis-ci.org/amarofashion/react-credit-cards.svg?branch=master)](https://travis-ci.org/amarofashion/react-credit-cards)
-[![Maintainability](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/maintainability)](https://codeclimate.com/github/amarofashion/react-credit-cards/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/test_coverage)](https://codeclimate.com/github/amarofashion/react-credit-cards/test_coverage)
+[![NPM](https://badge.fury.io/js/react-credit-cards.svg)](https://www.npmjs.com/package/react-credit-cards) [![Travis](https://travis-ci.org/amarofashion/react-credit-cards.svg?branch=master)](https://travis-ci.org/amarofashion/react-credit-cards) [![Maintainability](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/maintainability)](https://codeclimate.com/github/amarofashion/react-credit-cards/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/test_coverage)](https://codeclimate.com/github/amarofashion/react-credit-cards/test_coverage)
 
-A modern credit card component for React.
+A slick credit card component for React.
 
 ![demo](https://raw.githubusercontent.com/amarofashion/react-credit-cards/master/docs/media/rccs.gif)
 
@@ -20,16 +17,52 @@ npm install --save react-credit-cards
 ### Usage
 
 ```jsx
-    import Cards from 'react-credit-cards';
-    ...
+import React from 'react';
+import Cards from 'react-credit-cards';
 
-    <Cards
-      number={input.number.value}
-      name={input.name.value}
-      expiry={input.expiry.value}
-      cvc={input.cvc.value}
-      focused={state.focused}
-    />
+export default class PaymentForm extends React.Component {
+  state = {
+    cvc: '',
+    expiry: '',
+    focus: '',
+    name: '',
+    number: '',
+  };
+
+  handleInputFocus = (e) => {
+    this.setState({ focus: e.target.name });
+  }
+  
+  handleInputChange = (e) => {
+    const { name, value } = e.target;
+    
+    this.setState({ [name]: value });
+  }
+  
+  render() {
+    return (
+      <div id="PaymentForm">
+        <Cards
+          cvc={this.state.cvc}
+          expiry={this.state.expiry}
+          focus={this.state.focus}
+          name={this.state.name}
+          number={this.state.number}
+        />
+        <form>
+        	<input
+            type="tel"
+            name="number"
+            placeholder="Card Number"
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+          />
+          ...
+        </form>
+      </div>
+    );
+  }
+}
 ```
 
 Don't forget to import the `react-credit-cards/lib/styles.scss` if you are using SASS in your project.  
