@@ -6,13 +6,6 @@ class ReactCreditCards extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      type: {
-        name: 'unknown',
-        maxLength: 16,
-      },
-    };
-
     this.setCards();
   }
 
@@ -54,41 +47,31 @@ class ReactCreditCards extends React.Component {
     preview: false,
   };
 
-  componentDidMount() {
-    const { number } = this.props;
+  componentDidUpdate(prevProps) {
+    const { acceptedCards, callback, number } = this.props;
 
-    this.updateType(number);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { acceptedCards, number } = this.props;
-
-    const {
-      acceptedCards: nextAcceptedCards,
-      number: nextNumber,
-    } = nextProps;
-
-    if (number !== nextNumber) {
-      this.updateType(nextNumber);
+    if (prevProps.number !== number) {
+      /* istanbul ignore else */
+      if (typeof callback === 'function') {
+        callback(this.options, Payment.fns.validateCardNumber(number));
+      }
     }
 
-    if (acceptedCards.toString() !== nextAcceptedCards.toString()) {
-      this.setCards(nextProps);
+    if (prevProps.acceptedCards.toString() !== acceptedCards.toString()) {
+      this.setCards();
     }
   }
 
   get issuer() {
-    const { type } = this.state;
     const { issuer, preview } = this.props;
 
-    return preview && issuer ? issuer.toLowerCase() : type.issuer;
+    return preview && issuer ? issuer.toLowerCase() : this.options.issuer;
   }
 
   get number() {
-    const { type } = this.state;
     const { number, preview } = this.props;
 
-    let maxLength = preview ? 19 : type.maxLength;
+    let maxLength = preview ? 19 : this.options.maxLength;
     let nextNumber = typeof number === 'number' ? number.toString() : number.replace(/[A-Za-z]| /g, '');
 
     if (isNaN(parseInt(nextNumber, 10)) && !preview) {
@@ -156,8 +139,30 @@ class ReactCreditCards extends React.Component {
     return `${month}/${year}`;
   }
 
-  setCards(props = this.props) {
-    const { acceptedCards } = props;
+  get options() {
+    const { number } = this.props;
+    const issuer = Payment.fns.cardType(number) || 'unknown';
+
+    let maxLength = 16;
+
+    if (issuer === 'amex') {
+      maxLength = 15;
+    }
+    else if (issuer === 'dinersclub') {
+      maxLength = 14;
+    }
+    else if (['hipercard', 'mastercard', 'visa'].includes(issuer)) {
+      maxLength = 19;
+    }
+
+    return {
+      issuer,
+      maxLength,
+    };
+  }
+
+  setCards() {
+    const { acceptedCards } = this.props;
     let newCardArray = [];
 
     if (acceptedCards.length) {
@@ -173,38 +178,6 @@ class ReactCreditCards extends React.Component {
     }
 
     Payment.setCardArray(newCardArray);
-  }
-
-  updateType(number) {
-    const { callback } = this.props;
-    const type = Payment.fns.cardType(number) || 'unknown';
-
-    let maxLength = 16;
-
-    if (type === 'amex') {
-      maxLength = 15;
-    }
-    else if (type === 'dinersclub') {
-      maxLength = 14;
-    }
-    else if (['hipercard', 'mastercard', 'visa'].includes(type)) {
-      maxLength = 19;
-    }
-
-    const typeState = {
-      issuer: type,
-      maxLength,
-    };
-    const isValid = Payment.fns.validateCardNumber(number);
-
-    this.setState({
-      type: typeState,
-    });
-
-    /* istanbul ignore else */
-    if (typeof callback === 'function') {
-      callback(typeState, isValid);
-    }
   }
 
   render() {
