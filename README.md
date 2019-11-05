@@ -45,7 +45,7 @@ export default class PaymentForm extends React.Component {
         <Cards
           cvc={this.state.cvc}
           expiry={this.state.expiry}
-          focus={this.state.focus}
+          focused={this.state.focus}
           name={this.state.name}
           number={this.state.number}
         />
