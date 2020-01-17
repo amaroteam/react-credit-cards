@@ -1,30 +1,36 @@
 ---
-engines:
-  eslint:
-    enabled: true
-    channel: "eslint-4"
+version: "2"
+checks:
+  argument-count:
     config:
-      extensions:
-        - .js
-        - .jsx
-    checks:
-      import/no-duplicates:
-        enabled: false
-      no-template-curly-in-string:
-        enabled: false
-      import/no-unresolved:
-        enabled: false
-      import/no-extraneous-dependencies:
-        enabled: false
-      import/no-named-as-default-member:
-        enabled: false
-  stylelint:
-    enabled: true
-ratings:
-  paths:
-  - "**.js"
-  - "**.jsx"
-  - "**.scss"
+      threshold: 4
+  complex-logic:
+    config:
+      threshold: 4
+  file-lines:
+    config:
+      threshold: 500
+  method-complexity:
+    config:
+      threshold: 20
+  method-count:
+    config:
+      threshold: 20
+  method-lines:
+    config:
+      threshold: 50
+  nested-control-flow:
+    config:
+      threshold: 4
+  return-statements:
+    config:
+      threshold: 4
+  similar-code:
+    config:
+      threshold: 100
+  identical-code:
+    config:
+      threshold: 20
 exclude_paths:
   - coverage/**/*
   - docs/**/*

@@ -24,6 +24,7 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
   ],
+  coverageReporters: ['json', 'lcovonly', 'text', 'clover'],
   coverageThreshold: {
     global: {
       branches: 90,

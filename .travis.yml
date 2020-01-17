@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '8'
+  - '10'
 cache:
   directories:
     - "node_modules"
@@ -10,13 +10,5 @@ before_script:
   - ./cc-test-reporter before-build
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-deploy:
-  provider: npm
-  email: gilbarbara@gmail.com
-  api_key:
-    secure: PAkWHSl1+a6YLyyPxScfmRkjsaOPOfP/ugaWKb8yOFwyo8xQQRbYB+WQaYeLLoHHgtVfBvzc/LvSwQdl0ASBJdPLi9rbAwSrkoJ8vMwx3WFc51KGIkNdm00reKxlRa20Hu3PWnEH6jbB3Ag8aAS3mRaYxACplP0BYBE9u5vfJJdqC9KHmbwnMUKolKlB9/hmJ5GFzWD1xFf48pUATOlQnZvi1RkrX5Iarp46Z4a0RkosKNEhcKQw75IniWr4HN10Fo4q7ZZQuRQWM2Ul+InAynfUCTlJeEOiVWEUjvMMQkJQgNGyUI25+SfgDtQ1zY2NVS3IRTXfSDWd6R/LA+vDj9SZ3sn7ZdowdZfJkKOvWcWbtU5PIKOs35vNsMq+McFNT2dL+94wKX+b8qSXf0b/13jAV32hgYdMs0xF8chjp7xZOPGRlkfAgEwn494xOqDZsh2MSVF9CvdXX9ewN4L6Pso417HcQWk7aNcWwlnYMhGQfG9We37vh/Bly899fxh7K6ehdZx2/PksH4Cmw7DS8/rCOXkQJBHNGRsmxE15ZgcN6oFYd3pHzFHEvu3JGwGa3f2ihlLaE6sMpy3QUZaZTNV/lynvSthipkLtoZHmyA9/KGnNPA9zJ1oMYFHhJ2gm5sdcFrDGvySNWbPnbdWP5GXTNgSNRRXfb/sVSmL7x5U=
-  on:
-    tags: true
-    repo: amarofashion/react-credit-cards
 addons:
   code_climate: true
