@@ -321,6 +321,7 @@ $rccs-visaelectron-logo: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBl
     text-overflow: ellipsis;
     text-transform: uppercase;
     width: 60%;
+    white-space: nowrap;
   }
 
   &__expiry {
