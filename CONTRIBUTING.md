@@ -13,16 +13,18 @@ Before creating bug reports, please check the [issues](https://github.com/amarof
 ### How to contribute?
 
 1. Fork this repo to your account then clone it to your environment.
-1. Run `npm install` and `npm start` to get things going.
+1. Run `npm install` to get things going.
 1. Replicate the issue you're trying to fix or spec out the feature you're trying to add. Understanding the scope of what you're fixing or adding is important and upfront thought helps.
 1. Change the code to fix the bug or add the feature. All changes should happen in the relevant `*.jsx` and `*.scss` files in the `/src` directory.
-1. Verify that your fix or feature works. If it a new feature make to add it to the demo.
+1. Verify that your fix or feature works locally.
 1. Run `npm run precommit` to lint all the files and run the tests
 1. Run `npm run build` to bundle the production files.
-1. if you changed the demo you must run `npm run build:demo` before pushing.
 1. Commit your changes with an informative description. Do not make a single commit for big updates.
 1. Open a pull request to the primary repo with your new commits and a descriptive message about what the PR does.
 
+### Running the code locally
+- Download the demo source from [codesandbox](https://codesandbox.io/s/ovvwzkzry9) and install the dependencies
+- Link your local repo into the demo source code. Check [npm-link](https://docs.npmjs.com/cli/link.html) for instructions.
 
 ### What can I contribute?
 
