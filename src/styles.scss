@@ -1,15 +1,16 @@
 $rccs-card-ratio: 1.5858 !default;
 $rccs-size: 290px !default;
+$rccs-font: 'Consolas', 'Courier', monospace !default;
 
 $rccs-name-font-size: 17px !default;
-$rccs-name-font-family: Consolas, Courier, monospace !default;
+$rccs-name-font-family: $rccs-font !default;
 $rccs-number-font-size: 20px !default;
-$rccs-number-font-family: Consolas, Courier, monospace !default;
+$rccs-number-font-family: $rccs-font !default;
 $rccs-valid-font-size: 10px !default;
 $rccs-expiry-font-size: 16px !default;
-$rccs-expiry-font-family: Consolas, Courier, monospace !default;
+$rccs-expiry-font-family: $rccs-font !default;
 $rccs-cvc-font-size: 14px !default;
-$rccs-cvc-font-family: Consolas, Courier, monospace !default;
+$rccs-cvc-font-family: $rccs-font !default;
 $rccs-cvc-color: #222 !default;
 
 $rccs-shadow: 0 0 20px rgba(#000, 0.2) !default;
