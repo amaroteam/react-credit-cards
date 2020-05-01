@@ -41,6 +41,8 @@
     "prop-types": "^15.6.2"
   },
   "dependencies": {
+    "credit-card-type": "^8.3.0",
+    "luhn": "^2.4.1",
     "payment": "^2.3.0"
   },
   "devDependencies": {
