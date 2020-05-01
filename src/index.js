@@ -1,51 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Payment from 'payment';
+import creditCardType, { types as cardTypes } from 'credit-card-type';
+import luhn from 'luhn';
+
+import { sanitizeNumber } from './utils';
 
 class ReactCreditCards extends React.Component {
   constructor(props) {
     super(props);
 
-    this.setCards();
+    // TODO: Add Dankort, Laser, Visa Electron
+    // Fix Hipercard
+    this.state = {
+      validCardTypes: Object.values(cardTypes),
+    };
   }
 
-  static propTypes = {
-    acceptedCards: PropTypes.array,
-    callback: PropTypes.func,
-    cvc: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
-    expiry: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
-    focused: PropTypes.string,
-    issuer: PropTypes.string,
-    locale: PropTypes.shape({
-      valid: PropTypes.string,
-    }),
-    name: PropTypes.string.isRequired,
-    number: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
-    placeholders: PropTypes.shape({
-      name: PropTypes.string,
-    }),
-    preview: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    acceptedCards: [],
-    locale: {
-      valid: 'valid thru',
-    },
-    placeholders: {
-      name: 'YOUR NAME HERE',
-    },
-    preview: false,
-  };
+  componentDidMount() {
+    this.setCards();
+  }
 
   componentDidUpdate(prevProps) {
     const { acceptedCards, callback, number } = this.props;
@@ -53,7 +26,7 @@ class ReactCreditCards extends React.Component {
     if (prevProps.number !== number) {
       /* istanbul ignore else */
       if (typeof callback === 'function') {
-        callback(this.options, Payment.fns.validateCardNumber(number));
+        callback(this.options, luhn.validate(number));
       }
     }
 
@@ -90,7 +63,7 @@ class ReactCreditCards extends React.Component {
       nextNumber += '•';
     }
 
-    if (['amex', 'dinersclub'].includes(this.issuer)) {
+    if (['american-express', 'diners-club'].includes(this.issuer)) {
       const format = [0, 4, 10];
       const limit = [4, 6, 5];
       nextNumber = `${nextNumber.substr(format[0], limit[0])} ${nextNumber.substr(format[1], limit[1])} ${nextNumber.substr(format[2], limit[2])}`;
@@ -140,44 +113,43 @@ class ReactCreditCards extends React.Component {
   }
 
   get options() {
-    const { number } = this.props;
-    const issuer = Payment.fns.cardType(number) || 'unknown';
+    const { issuer, number, preview } = this.props;
+    const { validCardTypes } = this.state;
+    let updatedIssuer = issuer || 'unknown';
+
+    if (number && !preview) {
+      const validatedIssuer = creditCardType(sanitizeNumber(number)).length ? creditCardType(sanitizeNumber(number))[0].type : 'unknown';
+
+      if (validCardTypes.includes(validatedIssuer)) {
+        updatedIssuer = validatedIssuer;
+      }
+    }
 
     let maxLength = 16;
 
-    if (issuer === 'amex') {
+    if (updatedIssuer === 'american-express') {
       maxLength = 15;
     }
-    else if (issuer === 'dinersclub') {
+    else if (updatedIssuer === 'diners-club') {
       maxLength = 14;
     }
-    else if (['hipercard', 'mastercard', 'visa'].includes(issuer)) {
+    else if (['hipercard', 'mastercard', 'visa'].includes(updatedIssuer)) {
       maxLength = 19;
     }
 
     return {
-      issuer,
+      issuer: updatedIssuer,
       maxLength,
     };
   }
 
   setCards() {
     const { acceptedCards } = this.props;
-    let newCardArray = [];
 
     if (acceptedCards.length) {
-      Payment.getCardArray()
-        .forEach(d => {
-          if (acceptedCards.includes(d.type)) {
-            newCardArray.push(d);
-          }
-        });
+      const validCardTypes = Object.values(cardTypes).filter(card => acceptedCards.includes(card));
+      this.setState({ validCardTypes });
     }
-    else {
-      newCardArray = newCardArray.concat(Payment.getCardArray());
-    }
-
-    Payment.setCardArray(newCardArray);
   }
 
   render() {
@@ -190,7 +162,7 @@ class ReactCreditCards extends React.Component {
           className={[
             'rccs__card',
             `rccs__card--${this.issuer}`,
-            focused === 'cvc' && this.issuer !== 'amex' ? 'rccs__card--flipped' : '',
+            focused === 'cvc' && this.issuer !== 'american-express' ? 'rccs__card--flipped' : '',
           ].join(' ').trim()}
         >
           <div className="rccs__card--front">
@@ -254,5 +226,43 @@ class ReactCreditCards extends React.Component {
     );
   }
 }
+
+ReactCreditCards.propTypes = {
+  acceptedCards: PropTypes.array,
+  callback: PropTypes.func,
+  cvc: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  expiry: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  focused: PropTypes.string,
+  issuer: PropTypes.string,
+  locale: PropTypes.shape({
+    valid: PropTypes.string,
+  }),
+  name: PropTypes.string.isRequired,
+  number: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  placeholders: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+  preview: PropTypes.bool,
+};
+
+ReactCreditCards.defaultProps = {
+  acceptedCards: [],
+  locale: {
+    valid: 'valid thru',
+  },
+  placeholders: {
+    name: 'YOUR NAME HERE',
+  },
+  preview: false,
+};
 
 export default ReactCreditCards;
