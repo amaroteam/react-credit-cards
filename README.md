@@ -71,7 +71,8 @@ Or you can import the CSS:
 
 ### Features
 
-- We support all credit card issuers available in [Payment](https://github.com/jessepollak/payment) plus Hipercard (a brazilian credit card).
+- We support all credit card issuers available in [credit-card-type](https://github.com/braintree/credit-card-type) plus
+ Dankort, Laser, and Visa Electron.
 
 ## Props
 
@@ -136,12 +137,30 @@ Or you can import the CSS:
 
 Here's how you can get started developing locally:
 
+1. Clone this repo and create a symlink:
+
     $ git clone https://github.com/amarofashion/react-credit-cards.git
     $ cd react-credit-cards
     $ npm install
-    $ npm start
+    $ npm link
 
-Now, if you go to `http://localhost:3000` in your browser, you should see the demo page.
+2. Download the demo source from [codesandbox](https://codesandbox.io/s/ovvwzkzry9) and install the dependencies:
+
+    $ cd react-credit-cards-demo
+    $ npm link react-credit-cards
+    $ npm install
+
+3. On the `react-credit-cards` directory, start the watcher:
+
+    $ npm run watch
+    
+4. On the `react-credit-cards-demo` directory, start the demo app:
+
+    $ npm start
+    
+Done! Your local changes should be automatically reflected on the demo.
+
+Check [npm-link](https://docs.npmjs.com/cli/link.html) for detailed instructions.
 
 ## Contributing
 
