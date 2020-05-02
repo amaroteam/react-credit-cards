@@ -3,16 +3,44 @@ import PropTypes from 'prop-types';
 import creditCardType, { types as cardTypes } from 'credit-card-type';
 import luhn from 'luhn';
 
+import { dankort, laser, visaElectron } from './cardTypes';
 import { sanitizeNumber } from './utils';
 
 class ReactCreditCards extends React.Component {
   constructor(props) {
     super(props);
 
-    // TODO: Add Dankort, Laser, Visa Electron
-    // Fix Hipercard
+    creditCardType.updateCard(cardTypes.MAESTRO, {
+      patterns: [
+        493698,
+        [5000, 5018],
+        [502000, 506698],
+        [506779, 508999],
+        [56, 59],
+        63,
+        67,
+        6,
+      ],
+    });
+    creditCardType.updateCard(cardTypes.HIPERCARD, {
+      patterns: [
+        384100,
+        384140,
+        384160,
+        606282,
+        637095,
+        637568,
+      ],
+    });
+    creditCardType.addCard(dankort);
+    creditCardType.addCard(laser);
+    creditCardType.addCard(visaElectron);
+
+    const initialValidCards = Object.values(cardTypes);
+    const extendedValidCards = [...initialValidCards, 'dankort', 'laser', 'visa-electron'];
+
     this.state = {
-      validCardTypes: Object.values(cardTypes),
+      validCardTypes: extendedValidCards,
     };
   }
 
@@ -147,8 +175,7 @@ class ReactCreditCards extends React.Component {
     const { acceptedCards } = this.props;
 
     if (acceptedCards.length) {
-      const validCardTypes = Object.values(cardTypes).filter(card => acceptedCards.includes(card));
-      this.setState({ validCardTypes });
+      this.setState((prevState) => ({ validCardTypes: prevState.validCardTypes.filter(card => acceptedCards.includes(card)) }));
     }
   }
 

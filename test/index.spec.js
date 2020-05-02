@@ -86,7 +86,7 @@ describe('ReactCreditCards', () => {
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
-  it.skip('should handle new number props (Dankort)', () => {
+  it('should handle new number props (Dankort)', () => {
     wrapper.setProps({
       number: '5019717010103742',
       focused: 'number',
@@ -142,7 +142,7 @@ describe('ReactCreditCards', () => {
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
-  it.skip('should handle new number props (Hipercard)', () => {
+  it('should handle new number props (Hipercard)', () => {
     wrapper.setProps({
       number: '3841005899088180330',
       focused: 'number',
@@ -170,7 +170,7 @@ describe('ReactCreditCards', () => {
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
-  it.skip('should handle new number props (Laser)', () => {
+  it('should handle new number props (Laser)', () => {
     wrapper.setProps({
       number: '6709359636227382',
       focused: 'number',
@@ -254,17 +254,17 @@ describe('ReactCreditCards', () => {
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
-  it.skip('should handle new number props (VisaElectron)', () => {
+  it('should handle new number props (Visa Electron)', () => {
     wrapper.setProps({
       number: '4508269706217171',
       focused: 'number',
     });
 
-    expect(wrapper.find('.rccs__card').hasClass('rccs__card--visaelectron')).toBe(true);
+    expect(wrapper.find('.rccs__card').hasClass('rccs__card--visa-electron')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('4508 2697 0621 7171');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
-    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'visaelectron' });
+    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'visa-electron' });
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
