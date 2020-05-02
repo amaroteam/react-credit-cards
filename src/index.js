@@ -36,11 +36,8 @@ class ReactCreditCards extends React.Component {
     creditCardType.addCard(laser);
     creditCardType.addCard(visaElectron);
 
-    const initialValidCards = Object.values(cardTypes);
-    const extendedValidCards = [...initialValidCards, 'dankort', 'laser', 'visa-electron'];
-
     this.state = {
-      validCardTypes: extendedValidCards,
+      validCardTypes: Object.values(cardTypes).concat(['dankort', 'laser', 'visa-electron']),
     };
   }
 
