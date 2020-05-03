@@ -109,11 +109,11 @@ class ReactCreditCards extends React.Component {
   }
 
   get options() {
-    const { issuer, number, preview } = this.props;
+    const { number } = this.props;
     const { validCardTypes } = this.state;
-    let updatedIssuer = issuer || 'unknown';
+    let updatedIssuer = 'unknown';
 
-    if (number && !preview) {
+    if (number) {
       const validatedIssuer = getCardType(number);
 
       if (validCardTypes.includes(validatedIssuer)) {
