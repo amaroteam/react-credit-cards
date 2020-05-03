@@ -15,7 +15,7 @@ class ReactCreditCards extends React.Component {
     }
 
     if (prevProps.acceptedCards.toString() !== acceptedCards.toString()) {
-      this.validCardTypes = acceptedCards;
+      this.updateValidCardTypes(acceptedCards);
     }
   }
 
@@ -137,7 +137,7 @@ class ReactCreditCards extends React.Component {
     return initialValidCardTypes;
   }
 
-  set validCardTypes(acceptedCards) {
+  updateValidCardTypes(acceptedCards) {
     if (acceptedCards.length) {
       return this.validCardTypes.filter(card => acceptedCards.includes(card));
     }
