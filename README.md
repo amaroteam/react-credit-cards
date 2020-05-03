@@ -137,28 +137,30 @@ Or you can import the CSS:
 
 Here's how you can get started developing locally:
 
-1. Clone this repo and create a symlink:
+1. Clone this repo and link it to your global `node_modules`:
 
     $ git clone https://github.com/amarofashion/react-credit-cards.git
     $ cd react-credit-cards
     $ npm install
     $ npm link
 
-2. Download the demo source from [codesandbox](https://codesandbox.io/s/ovvwzkzry9) and install the dependencies:
+2. Download the demo source from [codesandbox](https://codesandbox.io/s/ovvwzkzry9).
+3. Unzip it to the desired directory.
+4. Install the dependencies
 
     $ cd react-credit-cards-demo
-    $ npm link react-credit-cards
     $ npm install
+    $ npm link react-credit-cards
 
-3. On the `react-credit-cards` directory, start the watcher:
+5. On the `react-credit-cards` directory, start the watcher:
 
     $ npm run watch
     
-4. On the `react-credit-cards-demo` directory, start the demo app:
+6. On the `react-credit-cards-demo` directory, start the demo app:
 
     $ npm start
     
-Done! Your local changes should be automatically reflected on the demo.
+7. 🎉 Done! The demo app will be running on: `http://localhost:3000/`. Your local changes should be automatically reflected there.
 
 Check [npm-link](https://docs.npmjs.com/cli/link.html) for detailed instructions.
 
