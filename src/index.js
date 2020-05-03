@@ -59,7 +59,7 @@ class ReactCreditCards extends React.Component {
       nextNumber += '•';
     }
 
-    if (['american-express', 'diners-club'].includes(this.issuer)) {
+    if (cardTypesMap.amex.includes(this.issuer) || cardTypesMap.dinersclub.includes(this.issuer)) {
       const format = [0, 4, 10];
       const limit = [4, 6, 5];
       nextNumber = `${nextNumber.substr(format[0], limit[0])} ${nextNumber.substr(format[1], limit[1])} ${nextNumber.substr(format[2], limit[2])}`;
@@ -123,10 +123,10 @@ class ReactCreditCards extends React.Component {
 
     let maxLength = 16;
 
-    if (updatedIssuer === 'american-express') {
+    if (cardTypesMap.amex.includes(updatedIssuer)) {
       maxLength = 15;
     }
-    else if (updatedIssuer === 'diners-club') {
+    else if (cardTypesMap.dinersclub.includes(updatedIssuer)) {
       maxLength = 14;
     }
     else if (['hipercard', 'mastercard', 'visa'].includes(updatedIssuer)) {
