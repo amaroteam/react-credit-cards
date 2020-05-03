@@ -12,9 +12,7 @@ class ReactCreditCards extends React.Component {
     this.state = {
       validCardTypes,
     };
-  }
 
-  componentDidMount() {
     this.setCards();
   }
 
