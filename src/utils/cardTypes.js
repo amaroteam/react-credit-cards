@@ -1,3 +1,7 @@
+/**
+ * Provides configuration for card types not supported by `credit-card-types`
+ */
+
 export const dankort = {
   niceType: 'Dankort',
   type: 'dankort',

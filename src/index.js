@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import creditCardType from 'credit-card-type';
-import luhn from 'luhn';
 
-import { configure } from './config';
-import { sanitizeNumber } from './utils';
+import { cardTypesMap, configure, getCardType, validateLuhn } from './utils/cardHelpers';
 
 class ReactCreditCards extends React.Component {
   constructor(props) {
@@ -27,7 +24,7 @@ class ReactCreditCards extends React.Component {
     if (prevProps.number !== number) {
       /* istanbul ignore else */
       if (typeof callback === 'function') {
-        callback(this.options, luhn.validate(number));
+        callback(this.options, validateLuhn(number));
       }
     }
 
@@ -119,7 +116,7 @@ class ReactCreditCards extends React.Component {
     let updatedIssuer = issuer || 'unknown';
 
     if (number && !preview) {
-      const validatedIssuer = creditCardType(sanitizeNumber(number)).length ? creditCardType(sanitizeNumber(number))[0].type : 'unknown';
+      const validatedIssuer = getCardType(number);
 
       if (validCardTypes.includes(validatedIssuer)) {
         updatedIssuer = validatedIssuer;
