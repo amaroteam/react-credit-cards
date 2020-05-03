@@ -1,21 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { cardTypesMap, configure, getCardType, validateLuhn } from './utils/cardHelpers';
+import { cardTypesMap, getCardType, setInitialValidCardTypes, validateLuhn } from './utils/cardHelpers';
 
 class ReactCreditCards extends React.Component {
-  constructor(props) {
-    super(props);
-
-    const validCardTypes = configure();
-
-    this.state = {
-      validCardTypes,
-    };
-
-    this.setCards();
-  }
-
   componentDidUpdate(prevProps) {
     const { acceptedCards, callback, number } = this.props;
 
@@ -27,7 +15,7 @@ class ReactCreditCards extends React.Component {
     }
 
     if (prevProps.acceptedCards.toString() !== acceptedCards.toString()) {
-      this.setCards();
+      this.validCardTypes = acceptedCards;
     }
   }
 
@@ -110,13 +98,12 @@ class ReactCreditCards extends React.Component {
 
   get options() {
     const { number } = this.props;
-    const { validCardTypes } = this.state;
     let updatedIssuer = 'unknown';
 
     if (number) {
       const validatedIssuer = getCardType(number);
 
-      if (validCardTypes.includes(validatedIssuer)) {
+      if (this.validCardTypes.includes(validatedIssuer)) {
         updatedIssuer = validatedIssuer;
       }
     }
@@ -139,12 +126,23 @@ class ReactCreditCards extends React.Component {
     };
   }
 
-  setCards() {
+  get validCardTypes() {
     const { acceptedCards } = this.props;
+    const initialValidCardTypes = setInitialValidCardTypes();
 
     if (acceptedCards.length) {
-      this.setState((prevState) => ({ validCardTypes: prevState.validCardTypes.filter(card => acceptedCards.includes(card)) }));
+      return initialValidCardTypes.filter(card => acceptedCards.includes(card));
     }
+
+    return initialValidCardTypes;
+  }
+
+  set validCardTypes(acceptedCards) {
+    if (acceptedCards.length) {
+      return this.validCardTypes.filter(card => acceptedCards.includes(card));
+    }
+
+    return this.validCardTypes;
   }
 
   render() {

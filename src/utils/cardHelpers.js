@@ -34,10 +34,10 @@ export const getCardType = (cardNumber) => {
 };
 
 /**
- * Configure credit cards and return an array of valid types
+ * Configure the credit card types supported and return an array of valid types
  * @returns {string[]} validCardTypes
  */
-export const configure = () => {
+export const setInitialValidCardTypes = () => {
   creditCardType.updateCard(cardTypes.MAESTRO, {
     patterns: [
       493698,
