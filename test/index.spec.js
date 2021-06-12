@@ -240,14 +240,14 @@ describe('ReactCreditCards', () => {
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
-  it('should handle new number props (Visa with 19 digits)', () => {
+  it('should handle new number props (Visa with 16 digits)', () => {
     wrapper.setProps({
-      number: '4111111111111111342',
+      number: '4111111111111111',
       focused: 'number',
     });
 
     expect(wrapper.find('.rccs__card').hasClass('rccs__card--visa')).toBe(true);
-    expect(wrapper.find('.rccs__number').text()).toBe('4111 1111 1111 1111342');
+    expect(wrapper.find('.rccs__number').text()).toBe('4111 1111 1111 1111');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
     expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 19, issuer: 'visa' });
