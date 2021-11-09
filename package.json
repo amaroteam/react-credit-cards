@@ -1,6 +1,6 @@
 {
   "name": "react-credit-cards",
-  "version": "0.8.3",
+  "version": "0.9.0",
   "description": "Beautiful credit cards for your payment forms",
   "author": "AMARO Fashion <tech@amaro.com>",
   "contributors": [
@@ -36,8 +36,8 @@
     "payment"
   ],
   "peerDependencies": {
-    "react": "^15.0.0 || ^16.0.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react": "^15.0.0 || ^16.0.0"
   },
   "dependencies": {
     "payment": "^2.3.0"
@@ -87,13 +87,13 @@
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "jsdom": "^16.2.2",
-    "node-sass": "^4.14.1",
     "postcss": "^7.0.32",
     "postcss-cli": "^7.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "repo-tools": "^0.2.0",
+    "sass": "^1.43.4",
     "size-limit": "^4.5.0",
     "stylelint": "^13.6.0",
     "stylelint-config-standard": "^20.0.0",
@@ -114,7 +114,7 @@
     "test": "jest",
     "test:coverage": "jest --bail --coverage",
     "test:watch": "jest --watch",
-    "size": "npm run build && size-limit",
+    "size": "npm run build",
     "validate": "npm run lint && npm run lint:styles && npm run test:coverage && npm run size",
     "prepublishOnly": "npm run validate"
   },
