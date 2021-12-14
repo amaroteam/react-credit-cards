@@ -40,9 +40,10 @@
     "react": "^16.13.1 || ^17.0.0"
   },
   "dependencies": {
-    "payment": "^2.3.0",
     "credit-card-type": "^8.3.0",
-    "luhn": "^2.4.1"
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "luhn": "^2.4.1",
+    "payment": "^2.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.5",
