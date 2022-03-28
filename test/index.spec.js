@@ -78,11 +78,11 @@ describe('ReactCreditCards', () => {
       focused: 'number',
     });
 
-    expect(wrapper.find('.rccs__card').hasClass('rccs__card--amex')).toBe(true);
+    expect(wrapper.find('.rccs__card').hasClass('rccs__card--american-express')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('3782 822463 10005');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
-    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 15, issuer: 'amex' });
+    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 15, issuer: 'american-express' });
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
@@ -106,11 +106,11 @@ describe('ReactCreditCards', () => {
       focused: 'number',
     });
 
-    expect(wrapper.find('.rccs__card').hasClass('rccs__card--dinersclub')).toBe(true);
+    expect(wrapper.find('.rccs__card').hasClass('rccs__card--diners-club')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('3056 930902 5904');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
-    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 14, issuer: 'dinersclub' });
+    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 14, issuer: 'diners-club' });
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
@@ -254,17 +254,17 @@ describe('ReactCreditCards', () => {
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
-  it('should handle new number props (VisaElectron)', () => {
+  it('should handle new number props (Visa Electron)', () => {
     wrapper.setProps({
       number: '4508269706217171',
       focused: 'number',
     });
 
-    expect(wrapper.find('.rccs__card').hasClass('rccs__card--visaelectron')).toBe(true);
+    expect(wrapper.find('.rccs__card').hasClass('rccs__card--visa-electron')).toBe(true);
     expect(wrapper.find('.rccs__number').text()).toBe('4508 2697 0621 7171');
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
-    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'visaelectron' });
+    expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 16, issuer: 'visa-electron' });
     expect(mockCallback.mock.calls[0][1]).toEqual(true);
   });
 
@@ -370,7 +370,7 @@ describe('ReactCreditCards', () => {
     wrapper.setProps({
       number: '**** **** **** 7056',
       preview: true,
-      issuer: 'Hipercard',
+      issuer: 'hipercard',
     });
 
     expect(wrapper.find('.rccs__number').text()).toBe('**** **** **** 7056');

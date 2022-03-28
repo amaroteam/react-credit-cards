@@ -6,7 +6,7 @@
   "contributors": [
     {
       "name": "Cassio Cardoso",
-      "email": "cassio.cardoso@amaro.com"
+      "email": "caugusto.cardoso@gmail.com"
     },
     {
       "name": "Gil Barbara",
@@ -40,6 +40,8 @@
     "prop-types": "^15.7.2"
   },
   "dependencies": {
+    "credit-card-type": "^8.3.0",
+    "luhn": "^2.4.1",
     "payment": "^2.3.0"
   },
   "devDependencies": {
