@@ -251,7 +251,7 @@ describe('ReactCreditCards', () => {
     expect(wrapper.find('.rccs__number').hasClass('rccs--focused')).toBe(true);
 
     expect(mockCallback.mock.calls[0][0]).toEqual({ maxLength: 19, issuer: 'visa' });
-    expect(mockCallback.mock.calls[0][1]).toEqual(true);
+    expect(mockCallback.mock.calls[0][1]).toEqual(false);
   });
 
   it('should handle new number props (VisaElectron)', () => {
