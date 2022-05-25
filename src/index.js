@@ -34,6 +34,7 @@ class ReactCreditCards extends React.Component {
       name: PropTypes.string,
     }),
     preview: PropTypes.bool,
+    className: PropTypes.string,
   };
 
   static defaultProps = {
@@ -45,6 +46,7 @@ class ReactCreditCards extends React.Component {
       name: 'YOUR NAME HERE',
     },
     preview: false,
+    className: "",
   };
 
   componentDidUpdate(prevProps) {
@@ -185,7 +187,7 @@ class ReactCreditCards extends React.Component {
     const { number, expiry } = this;
 
     return (
-      <div key="Cards" className="rccs">
+      <div key="Cards" className={`rccs ${className}`}>
         <div
           className={[
             'rccs__card',
