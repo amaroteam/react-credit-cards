@@ -37,7 +37,7 @@
   ],
   "peerDependencies": {
     "prop-types": "^15.7.2",
-    "react": "^16.13.1 || ^17.0.0 || ^18"
+    "react": "^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
     "credit-card-type": "^8.3.0",
