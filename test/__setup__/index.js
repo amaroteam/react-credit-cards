@@ -1,5 +1,5 @@
 import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -10,6 +10,6 @@ document.body.appendChild(react);
 
 window.matchMedia = () => ({
   matches: false,
-  addListener: () => {},
-  removeListener: () => {},
+  addListener: () => undefined,
+  removeListener: () => undefined,
 });

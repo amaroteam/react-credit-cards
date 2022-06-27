@@ -1,4 +1,6 @@
-# React Credit Cards
+# React Credit Cards 2
+
+> This repository is a hard-fork from the original (https://github.com/amaroteam/react-credit-cards)[react-credit-cards] and it doesn't intend to add new functionality, the main purpose of this package is to refresh dependencies, make it usable with React 17 and 18 and clear out instalation warnings.
 
 [![NPM](https://badge.fury.io/js/react-credit-cards.svg)](https://www.npmjs.com/package/react-credit-cards) [![Travis](https://travis-ci.org/amarofashion/react-credit-cards.svg?branch=master)](https://travis-ci.org/amarofashion/react-credit-cards) [![Maintainability](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/maintainability)](https://codeclimate.com/github/amarofashion/react-credit-cards/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/test_coverage)](https://codeclimate.com/github/amarofashion/react-credit-cards/test_coverage)
 
@@ -71,7 +73,8 @@ Or you can import the CSS:
 
 ### Features
 
-- We support all credit card issuers available in [Payment](https://github.com/jessepollak/payment) plus Hipercard (a brazilian credit card).
+- We support all credit card issuers available in [credit-card-type](https://github.com/braintree/credit-card-type) plus
+ Dankort, Laser, and Visa Electron.
 
 ## Props
 
@@ -136,12 +139,32 @@ Or you can import the CSS:
 
 Here's how you can get started developing locally:
 
+1. Clone this repo and link it to your global `node_modules`:
+
     $ git clone https://github.com/amarofashion/react-credit-cards.git
     $ cd react-credit-cards
     $ npm install
-    $ npm start
+    $ npm link
 
-Now, if you go to `http://localhost:3000` in your browser, you should see the demo page.
+2. Download the demo source from [codesandbox](https://codesandbox.io/s/ovvwzkzry9).
+3. Unzip it to the desired directory.
+4. Install the dependencies
+
+    $ cd react-credit-cards-demo
+    $ npm install
+    $ npm link react-credit-cards
+
+5. On the `react-credit-cards` directory, start the watcher:
+
+    $ npm run watch
+    
+6. On the `react-credit-cards-demo` directory, start the demo app:
+
+    $ npm start
+    
+7. 🎉 Done! The demo app will be running on: `http://localhost:3000/`. Your local changes should be automatically reflected there.
+
+Check [npm-link](https://docs.npmjs.com/cli/link.html) for detailed instructions.
 
 ## Contributing
 
