@@ -1,6 +1,6 @@
 {
-  "name": "react-credit-cards",
-  "version": "0.8.3",
+  "name": "react-credit-cards-2",
+  "version": "0.9.0-rc-2",
   "description": "Beautiful credit cards for your payment forms",
   "author": "AMARO Fashion <tech@amaro.com>",
   "contributors": [
@@ -15,12 +15,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amarofashion/react-credit-cards.git"
+    "url": "git+https://github.com/felquis/react-credit-cards.git"
   },
   "bugs": {
-    "url": "https://github.com/amarofashion/react-credit-cards/issues"
+    "url": "https://github.com/felquis/react-credit-cards/issues"
   },
-  "homepage": "https://github.com/amarofashion/react-credit-cards#readme",
+  "homepage": "https://github.com/felquis/react-credit-cards#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -37,7 +37,7 @@
   ],
   "peerDependencies": {
     "prop-types": "^15.7.2",
-    "react": "^16.13.1 || ^17.0.0"
+    "react": "^16.13.1 || ^17.0.0 || ^18"
   },
   "dependencies": {
     "credit-card-type": "^8.3.0",
@@ -68,7 +68,8 @@
     "@babel/preset-env": "^7.14.9",
     "@babel/preset-flow": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
-    "@size-limit/preset-small-lib": "^4.12.0",
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "autoprefixer": "^10.2.6",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
@@ -78,7 +79,6 @@
     "date-fns": "^2.22.1",
     "del-cli": "^3.0.1",
     "enzyme": "^3.11.0",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "eslint": "^7.28.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-babel": "^5.3.1",
@@ -97,7 +97,7 @@
     "react-dom": "^17.0.2",
     "repo-tools": "^0.2.2",
     "sass": "^1.34.1",
-    "size-limit": "^4.12.0",
+    "size-limit": "^7.0.8",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-declaration-strict-value": "^1.7.12",
