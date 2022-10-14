@@ -15,12 +15,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/felquis/react-credit-cards.git"
+    "url": "git+https://github.com/felquis/react-credit-cards-2.git"
   },
   "bugs": {
-    "url": "https://github.com/felquis/react-credit-cards/issues"
+    "url": "https://github.com/felquis/react-credit-cards-2/issues"
   },
-  "homepage": "https://github.com/felquis/react-credit-cards#readme",
+  "homepage": "https://github.com/felquis/react-credit-cards-2#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "credit-card-type": "^8.3.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
     "luhn": "^2.4.1",
     "payment": "^2.3.0"
   },
@@ -86,6 +85,7 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "flow-bin": "^0.152.0",
     "husky": "^6.0.0",
     "jest": "^27.0.6",

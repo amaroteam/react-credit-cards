@@ -1,75 +1,76 @@
 # React Credit Cards 2
 
-> This repository is a hard-fork from the original (https://github.com/amaroteam/react-credit-cards)[react-credit-cards] and it doesn't intend to add new functionality, the main purpose of this package is to refresh dependencies, make it usable with React 17 and 18 and clear out instalation warnings.
+> This repository is a hard-fork from the original [react-credit-cards](https://github.com/amaroteam/react-credit-cards) package, and it does not intend to add any new functionality. The main purpose of this fork is to refresh dependencies from the original, to make it usable with React 17 and 18, and to clear the out installation warnings.
 
-[![NPM](https://badge.fury.io/js/react-credit-cards.svg)](https://www.npmjs.com/package/react-credit-cards) [![Travis](https://travis-ci.org/amarofashion/react-credit-cards.svg?branch=master)](https://travis-ci.org/amarofashion/react-credit-cards) [![Maintainability](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/maintainability)](https://codeclimate.com/github/amarofashion/react-credit-cards/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/test_coverage)](https://codeclimate.com/github/amarofashion/react-credit-cards/test_coverage)
+[![NPM](https://img.shields.io/npm/v/react-credit-cards-2)](https://www.npmjs.com/package/react-credit-cards-2) [![BundleSize](https://img.shields.io/bundlephobia/min/react-credit-cards-2)](https://bundlephobia.com/package/react-credit-cards-2) [![Travis](https://travis-ci.org/amarofashion/react-credit-cards.svg?branch=master)](https://travis-ci.org/amarofashion/react-credit-cards) [![Maintainability](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/maintainability)](https://codeclimate.com/github/amarofashion/react-credit-cards/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/test_coverage)](https://codeclimate.com/github/amarofashion/react-credit-cards/test_coverage)
 
 A slick credit card component for React.
 
-![demo](https://raw.githubusercontent.com/amarofashion/react-credit-cards/master/docs/media/rccs.gif)
+![demo](https://raw.githubusercontent.com/felquis/react-credit-cards-2/master/docs/media/rccs.gif)
 
-[Demo](https://amarofashion.github.io/react-credit-cards/)
+[Demo - CodeSandbox](https://ovvwzkzry9.codesandbox.io/)
 
 ### Install
 
 ```
-npm install --save react-credit-cards
+npm install --save react-credit-cards-2
 ```
 
 ### Usage
 
-```jsx
-import React from 'react';
-import Cards from 'react-credit-cards';
+```tsx
+import React, { useState } from 'react';
+import Cards from 'react-credit-cards-2';
 
-export default class PaymentForm extends React.Component {
-  state = {
-    cvc: '',
-    expiry: '',
-    focus: '',
-    name: '',
+const PaymentForm = () => {
+  const [state, setState] = useState({
     number: '',
-  };
+    expiry: '',
+    cvc: '',
+    name: '',
+    focus: '',
+  });
 
-  handleInputFocus = (e) => {
-    this.setState({ focus: e.target.name });
-  }
-  
-  handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = (evt) => {
+    const { name, value } = evt.target;
     
-    this.setState({ [name]: value });
+    setState({ [name]: value });
   }
-  
-  render() {
-    return (
-      <div id="PaymentForm">
-        <Cards
-          cvc={this.state.cvc}
-          expiry={this.state.expiry}
-          focused={this.state.focus}
-          name={this.state.name}
-          number={this.state.number}
+
+  const handleInputFocus = (evt) => {
+    setState({ focus: evt.target.name });
+  }
+
+  return (
+    <div id='PaymentForm'>
+      <Cards
+        number={state.number}
+        expiry={state.expiry}
+        cvc={state.cvc}
+        name={state.name}
+        focused={state.focus}
+      />
+      <form>
+        <input
+          type="number"
+          name="number"
+          placeholder="Card Number"
+          value={state.number}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
         />
-        <form>
-        	<input
-            type="tel"
-            name="number"
-            placeholder="Card Number"
-            onChange={this.handleInputChange}
-            onFocus={this.handleInputFocus}
-          />
-          ...
-        </form>
-      </div>
-    );
-  }
+        ...
+      </form>
+    </div>
+  );
 }
+
+export default PaymentForm;
 ```
 
-Don't forget to import the `react-credit-cards/lib/styles.scss` if you are using SASS in your project.  
+Don't forget to import the `react-credit-cards-2/lib/styles.scss` if you are using SASS in your project.  
 Or you can import the CSS:  
-`import 'react-credit-cards/es/styles-compiled.css';`
+`import 'react-credit-cards-2/es/styles-compiled.css';`
 
 ### Features
 
@@ -141,17 +142,22 @@ Here's how you can get started developing locally:
 
 1. Clone this repo and link it to your global `node_modules`:
 
-    $ git clone https://github.com/amarofashion/react-credit-cards.git
-    $ cd react-credit-cards
-    $ npm install
-    $ npm link
+      $ git clone https://github.com/felquis/react-credit-cards-2.git
+
+      $ cd react-credit-cards-2
+
+      $ npm install
+
+      $ npm link
 
 2. Download the demo source from [codesandbox](https://codesandbox.io/s/ovvwzkzry9).
 3. Unzip it to the desired directory.
 4. Install the dependencies
 
     $ cd react-credit-cards-demo
+
     $ npm install
+
     $ npm link react-credit-cards
 
 5. On the `react-credit-cards` directory, start the watcher:

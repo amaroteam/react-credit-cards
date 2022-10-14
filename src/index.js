@@ -1,35 +1,68 @@
-import React from 'react';
+import React, { useCallback, useMemo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { cardTypesMap, getCardType, setInitialValidCardTypes, validateLuhn } from './utils/cardHelpers';
 
-class ReactCreditCards extends React.Component {
-  componentDidUpdate(prevProps) {
-    const { acceptedCards, callback, number } = this.props;
+function ReactCreditCards({
+  acceptedCards = [],
+  number,
+  issuer,
+  preview = false,
+  expiry,
+  cvc,
+  focused,
+  locale = {
+    valid: 'valid thru',
+  },
+  name,
+  placeholders = {
+    name: 'YOUR NAME HERE',
+  },
+  callback,
+}) {
+  const [cardTypes, setCardTypes] = useState(setInitialValidCardTypes());
+  const validCardTypes = useMemo(() => {
+    if (acceptedCards?.length) {
+      return cardTypes.filter(card => acceptedCards.includes(card));
+    }
 
-    if (prevProps.number !== number) {
-      /* istanbul ignore else */
-      if (typeof callback === 'function') {
-        callback(this.options, validateLuhn(number));
+    return cardTypes;
+  }, [acceptedCards, cardTypes]);
+
+  const cardOptions = useMemo(() => {
+    let updatedIssuer = 'unknown';
+
+    if (number) {
+      const validatedIssuer = getCardType(number);
+
+      if (validCardTypes.includes(validatedIssuer)) {
+        updatedIssuer = validatedIssuer;
       }
     }
 
-    if (prevProps.acceptedCards.toString() !== acceptedCards.toString()) {
-      this.updateValidCardTypes(acceptedCards);
+    let maxLength = 16;
+
+    if (cardTypesMap.amex.includes(updatedIssuer)) {
+      maxLength = 15;
     }
-  }
+    else if (cardTypesMap.dinersclub.includes(updatedIssuer)) {
+      maxLength = 14;
+    }
+    else if (['hipercard', 'mastercard', 'visa'].includes(updatedIssuer)) {
+      maxLength = 19;
+    }
 
-  get issuer() {
-    const { issuer, preview } = this.props;
+    return {
+      issuer: updatedIssuer,
+      maxLength,
+    };
+  }, [number, validCardTypes]);
 
-    return preview && issuer ? issuer.toLowerCase() : this.options.issuer;
-  }
+  const cardIssuer = useMemo(() => (preview && issuer ? issuer.toLowerCase() : cardOptions.issuer), [cardOptions.issuer, issuer, preview]);
 
-  get number() {
-    const { number, preview } = this.props;
-
-    let maxLength = preview ? 19 : this.options.maxLength;
-    let nextNumber = typeof number === 'number' ? number.toString() : number.replace(/[A-Za-z]| /g, '');
+  const cardNumber = useMemo(() => {
+    let maxLength = preview ? 19 : cardOptions.maxLength;
+    let nextNumber = typeof number === 'number' ? number.toString() : String(number).replace(/[A-Za-z]| /g, '');
 
     if (isNaN(parseInt(nextNumber, 10)) && !preview) {
       nextNumber = '';
@@ -47,7 +80,7 @@ class ReactCreditCards extends React.Component {
       nextNumber += '•';
     }
 
-    if (cardTypesMap.amex.includes(this.issuer) || cardTypesMap.dinersclub.includes(this.issuer)) {
+    if (cardTypesMap.amex.includes(cardIssuer) || cardTypesMap.dinersclub.includes(cardIssuer)) {
       const format = [0, 4, 10];
       const limit = [4, 6, 5];
       nextNumber = `${nextNumber.substr(format[0], limit[0])} ${nextNumber.substr(format[1], limit[1])} ${nextNumber.substr(format[2], limit[2])}`;
@@ -65,10 +98,9 @@ class ReactCreditCards extends React.Component {
     }
 
     return nextNumber;
-  }
+  }, [cardOptions.maxLength, cardIssuer, number, preview]);
 
-  get expiry() {
-    const { expiry = '' } = this.props;
+  const cardExpiry = useMemo(() => {
     const date = typeof expiry === 'number' ? expiry.toString() : expiry;
     let month = '';
     let year = '';
@@ -94,130 +126,100 @@ class ReactCreditCards extends React.Component {
     }
 
     return `${month}/${year}`;
-  }
+  }, [expiry]);
 
-  get options() {
-    const { number } = this.props;
-    let updatedIssuer = 'unknown';
+  const updateValidCardTypes = useCallback((acceptedCardsInput) => {
+    if (acceptedCardsInput.length) {
+      setCardTypes(cardTypes.filter(card => acceptedCardsInput.includes(card)));
+      return;
+    }
 
-    if (number) {
-      const validatedIssuer = getCardType(number);
+    const initialValidCardTypes = setInitialValidCardTypes();
+    setCardTypes(initialValidCardTypes);
+  }, [cardTypes]);
 
-      if (this.validCardTypes.includes(validatedIssuer)) {
-        updatedIssuer = validatedIssuer;
+  useEffect(() => {
+    if (cardNumber !== number) {
+      /* istanbul ignore else */
+      if (typeof callback === 'function') {
+        callback(cardOptions, validateLuhn(number));
       }
     }
 
-    let maxLength = 16;
-
-    if (cardTypesMap.amex.includes(updatedIssuer)) {
-      maxLength = 15;
-    }
-    else if (cardTypesMap.dinersclub.includes(updatedIssuer)) {
-      maxLength = 14;
-    }
-    else if (['hipercard', 'mastercard', 'visa'].includes(updatedIssuer)) {
-      maxLength = 19;
-    }
-
-    return {
-      issuer: updatedIssuer,
-      maxLength,
-    };
-  }
-
-  get validCardTypes() {
-    const { acceptedCards } = this.props;
     const initialValidCardTypes = setInitialValidCardTypes();
-
-    if (acceptedCards.length) {
-      return initialValidCardTypes.filter(card => acceptedCards.includes(card));
+    if (initialValidCardTypes.toString() !== cardTypes.toString()) {
+      updateValidCardTypes(acceptedCards);
     }
+  }, [acceptedCards, callback, cardOptions, cardNumber, updateValidCardTypes, number, cardTypes]);
 
-    return initialValidCardTypes;
-  }
-
-  updateValidCardTypes(acceptedCards) {
-    if (acceptedCards.length) {
-      return this.validCardTypes.filter(card => acceptedCards.includes(card));
-    }
-
-    return this.validCardTypes;
-  }
-
-  render() {
-    const { cvc, focused, locale, name, placeholders } = this.props;
-    const { number, expiry } = this;
-
-    return (
-      <div key="Cards" className="rccs">
-        <div
-          className={[
-            'rccs__card',
-            `rccs__card--${this.issuer}`,
-            focused === 'cvc' && this.issuer !== 'american-express' ? 'rccs__card--flipped' : '',
-          ].join(' ').trim()}
-        >
-          <div className="rccs__card--front">
-            <div className="rccs__card__background" />
-            <div className="rccs__issuer" />
-            <div
-              className={[
-                'rccs__cvc__front',
-                focused === 'cvc' ? 'rccs--focused' : '',
-              ].join(' ').trim()}
-            >
-              {cvc}
-            </div>
-            <div
-              className={[
-                'rccs__number',
-                number.replace(/ /g, '').length > 16 ? 'rccs__number--large' : '',
-                focused === 'number' ? 'rccs--focused' : '',
-                number.substr(0, 1) !== '•' ? 'rccs--filled' : '',
-              ].join(' ').trim()}
-            >
-              {number}
-            </div>
-            <div
-              className={[
-                'rccs__name',
-                focused === 'name' ? 'rccs--focused' : '',
-                name ? 'rccs--filled' : '',
-              ].join(' ').trim()}
-            >
-              {name || placeholders.name}
-            </div>
-            <div
-              className={[
-                'rccs__expiry',
-                focused === 'expiry' ? 'rccs--focused' : '',
-                expiry.substr(0, 1) !== '•' ? 'rccs--filled' : '',
-              ].join(' ').trim()}
-            >
-              <div className="rccs__expiry__valid">{locale.valid}</div>
-              <div className="rccs__expiry__value">{expiry}</div>
-            </div>
-            <div className="rccs__chip" />
+  return (
+    <div key="Cards" className="rccs">
+      <div
+        className={[
+          'rccs__card',
+          `rccs__card--${cardIssuer}`,
+          focused === 'cvc' && cardIssuer !== 'american-express' ? 'rccs__card--flipped' : '',
+        ].join(' ').trim()}
+      >
+        <div className="rccs__card--front">
+          <div className="rccs__card__background" />
+          <div className="rccs__issuer" />
+          <div
+            className={[
+              'rccs__cvc__front',
+              focused === 'cvc' ? 'rccs--focused' : '',
+            ].join(' ').trim()}
+          >
+            {cvc}
           </div>
-          <div className="rccs__card--back">
-            <div className="rccs__card__background" />
-            <div className="rccs__stripe" />
-            <div className="rccs__signature" />
-            <div
-              className={[
-                'rccs__cvc',
-                focused === 'cvc' ? 'rccs--focused' : '',
-              ].join(' ').trim()}
-            >
-              {cvc}
-            </div>
-            <div className="rccs__issuer" />
+          <div
+            className={[
+              'rccs__number',
+              cardNumber.replace(/ /g, '').length > 16 ? 'rccs__number--large' : '',
+              focused === 'number' ? 'rccs--focused' : '',
+              cardNumber.substr(0, 1) !== '•' ? 'rccs--filled' : '',
+            ].join(' ').trim()}
+          >
+            {cardNumber}
           </div>
+          <div
+            className={[
+              'rccs__name',
+              focused === 'name' ? 'rccs--focused' : '',
+              name ? 'rccs--filled' : '',
+            ].join(' ').trim()}
+          >
+            {name || placeholders.name}
+          </div>
+          <div
+            className={[
+              'rccs__expiry',
+              focused === 'expiry' ? 'rccs--focused' : '',
+              cardExpiry.substr(0, 1) !== '•' ? 'rccs--filled' : '',
+            ].join(' ').trim()}
+          >
+            <div className="rccs__expiry__valid">{locale.valid}</div>
+            <div className="rccs__expiry__value">{cardExpiry}</div>
+          </div>
+          <div className="rccs__chip" />
+        </div>
+        <div className="rccs__card--back">
+          <div className="rccs__card__background" />
+          <div className="rccs__stripe" />
+          <div className="rccs__signature" />
+          <div
+            className={[
+              'rccs__cvc',
+              focused === 'cvc' ? 'rccs--focused' : '',
+            ].join(' ').trim()}
+          >
+            {cvc}
+          </div>
+          <div className="rccs__issuer" />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 ReactCreditCards.propTypes = {
@@ -249,13 +251,6 @@ ReactCreditCards.propTypes = {
 
 ReactCreditCards.defaultProps = {
   acceptedCards: [],
-  locale: {
-    valid: 'valid thru',
-  },
-  placeholders: {
-    name: 'YOUR NAME HERE',
-  },
-  preview: false,
 };
 
 export default ReactCreditCards;

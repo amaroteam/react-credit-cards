@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb", "plugin:react-hooks/recommended"],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
