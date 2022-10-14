@@ -34,11 +34,11 @@ const PaymentForm = () => {
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
     
-    setState({ [name]: value });
+    setState((prev) => ({ ...prev, [name]: value }));
   }
 
   const handleInputFocus = (evt) => {
-    setState({ focus: evt.target.name });
+    setState((prev) => ({ ...prev, focus: evt.target.name }));
   }
 
   return (
