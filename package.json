@@ -116,7 +116,7 @@
     "build:styles": "node tools/build-styles",
     "build": "npm run clean && npm run build:code && npm run build:styles",
     "watch": "npm run build && watch-run -p 'src/**/.{ts,tsx,scss}' npm run build",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist/ es/ lib/ coverage/ .tmp/",
     "lint": "eslint --max-warnings=0 src",
     "format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./prettier.config.cjs",
     "lint:styles": "stylelint 'src/**/*.scss'",

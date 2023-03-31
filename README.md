@@ -68,9 +68,10 @@ const PaymentForm = () => {
 export default PaymentForm;
 ```
 
-Don't forget to import the `react-credit-cards-2/lib/styles.scss` if you are using SASS in your project.  
+If you are using SASS, import the CSS `react-credit-cards-2/dist/lib/styles.scss` 
+
 Or you can import the CSS:  
-`import 'react-credit-cards-2/es/styles-compiled.css';`
+`import 'react-credit-cards-2/dist/es/styles-compiled.css';`
 
 ### Features
 
