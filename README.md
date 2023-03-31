@@ -1,6 +1,6 @@
-# React Credit Cards 2
+# React Credit Cards 2 - Community Package
 
-> This repository is a hard-fork from the original [react-credit-cards](https://github.com/amaroteam/react-credit-cards) package, and it does not intend to add any new functionality. The main purpose of this fork is to refresh dependencies from the original, to make it usable with React 17 and 18, and to clear the out installation warnings.
+> This repository is a hard-fork from the original [react-credit-cards](https://github.com/amaroteam/react-credit-cards) package. The main purpose is to update dependencies, make it usable with React 17 and 18 and clear installation warnings.
 
 [![NPM](https://img.shields.io/npm/v/react-credit-cards-2)](https://www.npmjs.com/package/react-credit-cards-2) [![BundleSize](https://img.shields.io/bundlephobia/min/react-credit-cards-2)](https://bundlephobia.com/package/react-credit-cards-2) [![Travis](https://travis-ci.org/amarofashion/react-credit-cards.svg?branch=master)](https://travis-ci.org/amarofashion/react-credit-cards) [![Maintainability](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/maintainability)](https://codeclimate.com/github/amarofashion/react-credit-cards/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/bb0aa1a6b782c3845f6a/test_coverage)](https://codeclimate.com/github/amarofashion/react-credit-cards/test_coverage)
 
@@ -42,7 +42,7 @@ const PaymentForm = () => {
   }
 
   return (
-    <div id='PaymentForm'>
+    <div>
       <Cards
         number={state.number}
         expiry={state.expiry}
@@ -188,3 +188,4 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 This project is licensed under the [MIT License](LICENSE.md).
 
 ###### Made with ❤️ at [AMARO](https://amaro.com).
+###### Maintained with ❤️ by the community
