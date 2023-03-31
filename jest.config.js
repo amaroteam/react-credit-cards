@@ -1,31 +1,23 @@
 module.exports = {
-  testEnvironment: 'jsdom',
+  testEnvironment: "jsdom",
   transform: {
-    '.*': 'babel-jest',
+    ".*": "babel-jest",
   },
-  moduleFileExtensions: [
-    'js',
-    'json',
-  ],
-  moduleDirectories: [
-    'node_modules',
-    'src',
-    './',
-  ],
+  moduleFileExtensions: ["js", "json", "ts", "tsx"],
+  moduleDirectories: ["node_modules", "src", __dirname],
   moduleNameMapper: {
-    '^.+\\.(css|scss)$': '<rootDir>/test/__setup__/styleMock.js',
-    '^.+\\.(jpe?g|png|gif|ttf|eot|svg|md)$': '<rootDir>/test/__setup__/fileMock.js',
+    "^.+\\.(css|scss)$": "<rootDir>/test/__setup__/styleMock.js",
+    "^.+\\.(jpe?g|png|gif|ttf|eot|svg|md)$":
+      "<rootDir>/test/__setup__/fileMock.js",
   },
   setupFiles: [
-    '<rootDir>/test/__setup__/shim.js',
-    '<rootDir>/test/__setup__/index.js',
+    "<rootDir>/test/__setup__/shim.js",
+    "<rootDir>/test/__setup__/index.js",
   ],
-  testRegex: '/test/.*?\\.(test|spec)\\.js$',
+  testRegex: "/test/.*?\\.(test|spec)\\.js$",
   collectCoverage: false,
-  collectCoverageFrom: [
-    'src/**/*.{js,jsx}',
-  ],
-  coverageReporters: ['json', 'lcovonly', 'text', 'clover'],
+  collectCoverageFrom: ["src/**/*.{js,jsx}", "src/**/*.{ts,tsx}"],
+  coverageReporters: ["json", "lcovonly", "text", "clover"],
   coverageThreshold: {
     global: {
       branches: 90,
